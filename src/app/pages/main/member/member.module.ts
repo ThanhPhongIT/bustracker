@@ -1,3 +1,4 @@
+import { HeaderComponentModule } from './../../../components/header/header-component.module';
 import { MemberHomeClassComponent } from './components/member-levelGradeClass/member-list-class/member-home-class.component';
 import { MemberHomeGroupComponent } from './components/member-levelGradeClass/member-list-grade/member-home-group.component';
 import { MemberHomeComponent } from './components/member-levelGradeClass/member-list-level/member-home.component';
@@ -31,6 +32,7 @@ import { memberRoute } from './member.routes';
     BaseCardModule,
     FormsModule,
     TableBaseModule,
+    HeaderComponentModule,
   ],
   exports: [MemberComponent],
 })

@@ -29,12 +29,9 @@ export class MainLayoutComponent implements OnInit {
     callback: () => {},
   };
 
-  constructor(private handleDataService: HandleDataService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.handleDataService.dataHeader$.subscribe((res) => {
-      this.dataHeader = res;
-    });
     this.dataNav = {
       list: [
         {

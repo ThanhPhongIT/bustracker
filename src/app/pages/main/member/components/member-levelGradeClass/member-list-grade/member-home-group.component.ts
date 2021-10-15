@@ -1,4 +1,3 @@
-import { HandleDataService } from './../../../../../../services/handle-data.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-member-home-group',
@@ -6,13 +5,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member-home-group.component.scss'],
 })
 export class MemberHomeGroupComponent implements OnInit {
-  constructor(private handleDataService: HandleDataService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.handleDataService.setDataHeader({
-      title: 'Lớp',
-      isBack: true,
-      defaultHref: '',
-    });
-  }
+  ngOnInit() {}
 }

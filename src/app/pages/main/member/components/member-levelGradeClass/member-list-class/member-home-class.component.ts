@@ -1,4 +1,3 @@
-import { HandleDataService } from './../../../../../../services/handle-data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member-home-class.component.scss'],
 })
 export class MemberHomeClassComponent implements OnInit {
-  constructor(private handleDataService: HandleDataService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.handleDataService.setDataHeader({
-      title: 'Lớp 6A',
-      isBack: true,
-      defaultHref: '',
-    });
-  }
+  ngOnInit() {}
 }
