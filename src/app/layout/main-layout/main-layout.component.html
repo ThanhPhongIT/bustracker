@@ -1,0 +1,32 @@
+<div class="main-layout">
+  <mat-drawer-container class="example-container" autosize>
+    <div class="main-layout-header">
+      <div class="left">
+        <img
+          src="assets/svg/back-button.svg"
+          alt=""
+          *ngIf="dataHeader.isBack"
+        />
+        <p class="title">{{ dataHeader.title }}</p>
+        <button *ngIf="dataHeader.isAdd">Thêm thẻ</button>
+      </div>
+      <app-header-info></app-header-info>
+    </div>
+    <mat-drawer
+      opened
+      #drawer
+      class="example-sidsenav"
+      mode="side"
+      style="width: 235px"
+    >
+      <app-nav-menu [dataNavMenu]="dataNav"></app-nav-menu>
+    </mat-drawer>
+    <div
+      class="example-sidenav-content"
+      [@routeAnimations]="prepareRoute(outlet)"
+      style="margin-left: 250px"
+    >
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

@@ -1,0 +1,77 @@
+ul ,li {
+    list-style: none;
+    margin:0;
+    padding: 0;
+}
+
+.card{
+    display: grid;
+    grid-template-columns: 327px 327px 327px ;
+    grid-gap: 16px;
+    margin-bottom: 16px;
+    .base-card{
+        cursor: pointer;
+        height: 86px;
+        width: 327px;
+        border-radius: 15px;
+        display: flex;
+        position: relative;
+        box-shadow: 1px 0px 1px 2px rgb(0 0 0 / 4%);
+    
+        .card-img{
+            margin: 12px;
+            img{
+                height: 62px;
+                width: 62px;
+                object-fit: cover;
+            }
+        }
+        .card-info{
+            margin: 12px 0px;
+            .base-header{
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 24px;
+    
+            }
+    
+            .base-text{
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 20px;
+                align-items: center;
+                display: flex;
+                p{
+                    color: #23262F;
+                    font-weight: 600;
+
+                }
+                .total-group{
+                    width: 8px;
+                    height: 8px;
+                    margin-right: 10px;
+                    border-radius: 50%;
+                    background-color:#00C48C;
+                }
+                .total-person{
+                    width: 8px;
+                    height: 8px;
+                    margin: 0 10px 0 10px;
+                    border-radius: 50%;
+                    background: #0084F4;
+                    ;
+                }
+            } 
+         
+        }
+    
+    }
+}
+.delete{
+    width: 24px;
+    height: 24px;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+
+}

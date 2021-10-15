@@ -1,0 +1,34 @@
+<div class="header-info">
+  <div class="header-info-avt">
+    <img [src]="mediaURL" alt="" />
+  </div>
+  <div class="header-info-name">
+    {{ name }}
+  </div>
+  <div
+    class="header-info-btn"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu "
+  >
+    <!-- <mat-icon>more_vert</mat-icon> -->
+    <span class="material-icons"> expand_more </span>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="changePassword()">
+        <mat-icon><span class="material-icons"> https </span> </mat-icon>
+        <span>Đổi mật khẩu</span>
+      </button>
+      <button mat-menu-item (click)="btnLogout()">
+        <mat-icon><span class="material-icons"> logout </span> </mat-icon>
+        <span>Đăng xuất</span>
+      </button>
+
+      <!-- <button mat-menu-item (click)="changePassword()">
+              <mat-icon><span class="material-icons ">
+                https
+                </span></mat-icon>
+              <span>Đổi mật khẩu</span>
+            </button> -->
+    </mat-menu>
+  </div>
+</div>

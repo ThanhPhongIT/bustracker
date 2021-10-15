@@ -1,0 +1,38 @@
+<div class="card">
+    <div
+        class="base-card"
+        *ngFor="let i of dataCard"
+    >
+        <div class="card-img"
+        (click)="callback.emit(i)"
+        >
+            <img
+                src="assets/svg/icon-school.svg"
+                alt=""
+            >
+        </div>
+        <ul class="card-info"
+        (click)="callback.emit(i)"
+        >
+            <li class="base-header">{{i.Name}}</li>
+            <li class="base-text">
+                <div class="total-group" *ngIf="i.ClassCount">
+                  
+                </div>
+                <p *ngIf="i.ClassCount">{{i.ClassCount}} 
+                    <span *ngIf="check">Nhóm</span>
+                    <span *ngIf="!check">Lớp</span>
+                
+                </p>
+                <div class="total-person">
+                   
+                </div>
+                <p>{{i.StudentCount}} Thành viên</p> 
+            </li>
+            <li class="base-text">
+               
+            </li>
+        </ul>
+        <img *ngIf="showIcon" class="delete" (click)="handleDeleteCallBack(i)" src="assets/svg/icon-delete.svg" alt="" srcset="">
+    </div>
+</div>

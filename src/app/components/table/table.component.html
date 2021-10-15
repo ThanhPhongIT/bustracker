@@ -1,0 +1,136 @@
+<div class="table-style shadow">
+  <div class="header-table">
+    <div class="group-btn">
+      <div class="list-btn" *ngFor="let i of listActive">
+        <button class="btn" *ngIf="i.type !== 'menu' && i.type !== 'menu_noHand'" [class]="i.class" (click)="onClickBtnActive(i)">
+          <img [src]="i.icon" *ngIf="!i?.isHide" />{{ i?.text }}
+        </button>
+        <button class="btn" *ngIf="i.type === 'menu'" [matMenuTriggerFor]="menu" [class]="i.class"
+          (click)="onClickBtnActive(i)">
+          <img [src]="i.icon" />{{ i?.text }}
+        </button>
+        <button class="btn" *ngIf="i.type === 'menu_noHand'" [matMenuTriggerFor]="a" [class]="i.class"
+          (click)="onClickBtnActive(i)">
+          <img [src]="i.icon" />{{ i?.text }}
+        </button>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onClickBtnActive('uploadDoc')">Upload file</button>
+        <button mat-menu-item (click)="onClickBtnActive('create')">Tạo tài liệu</button>
+      </mat-menu>
+      <mat-menu #a="matMenu">
+        <button mat-menu-item (click)="onClickBtnActive('uploadDoc')">Upload file</button>
+      </mat-menu>
+      <button *ngIf="showDeleteAll" class="false" (click)="clickDeleteAll()">
+        Xoá tất cả
+      </button>
+      <input #file hidden type="file" multiple="false" (change)="incomingfile($event)" />
+      <input #fileUpload hidden type="file" multiple="false" (change)="chooseFile($event.target.files)" />
+    </div>
+    <div class="">
+      <div class="paginator">
+        <div class="current-page">
+          <button (click)="backPage()">
+            <img src="assets/svg/icon-left.svg" />
+          </button>
+          <span>{{ currentPage }}</span>
+          <button (click)="nextPage()">
+            <img src="assets/svg/icon-right.svg" />
+          </button>
+        </div>
+        <span>/ {{ totalPage }}</span>
+        <div class="select-item">
+          <select name="" id="" (change)="changeNumberItem($event.target.value)">
+            <option value="5" [selected]="pageSive === 5">5</option>
+            <option value="10" [selected]="pageSive === 10">10</option>
+            <option value="25" [selected]="pageSive === 25">25</option>
+            <option value="50" [selected]="pageSive === 50">50</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scroll">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col" *ngFor="let item of tableData" [style.min-width.px]="item.width">
+            {{ item.name }}
+            <input (change)="selectAll($event.target.checked)" class="checkbox" [checked]="showCheckAll === true"
+              *ngIf="item.type === 'checkbox'" type="checkbox" />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataSub; let i = index">
+          <td *ngFor="let i of tableData;">
+            <span *ngIf="i.type === 'checkbox'"><input [id]="item.stt" class="checkbox" [checked]="item.check === true"
+                (change)="selectItem(item, $event.target.checked, index)" type="checkbox" /></span>
+            <div class="data-content" *ngIf="i.type === 'number'" (click)="handleRouteLink(item)">
+              {{item[i.id] | number}}
+            </div>
+            <span class="data-content" *ngIf="i.type === 'boolean'"
+              [class]="item.HasFeedback === false ? 'false' : 'true'" (click)="handleRouteLink(item)">
+              {{item[i.id]}}
+            </span>
+            <div class="data-content" *ngIf="i.type === 'text'" (click)="handleRouteLink(item)">
+              {{item[i.id]}}
+            </div>
+            <div class="" *ngIf="i.type === 'free-text'" (click)="handleRouteLink(item)">
+              {{item[i.id]}}
+            </div>
+            <div class="data-content" *ngIf="i.type === 'object'" (click)="handleRouteLink(item)">
+              {{item[i.id][i.idSub]}}
+            </div>
+            <div class="data-content" *ngIf="i.type === 'date'" (click)="handleRouteLink(item)">
+              {{ item[i.id] | date: "dd/MM/yyyy - hh:mm a" }}
+            </div>
+            <div class="data-content" *ngIf="i.type === 'DOB'" (click)="handleRouteLink(item)">
+              {{ item[i.id] | date: "dd/MM/yyyy" }}
+            </div>
+            <div class="media-list" *ngIf="i.type === 'list'">
+              <div class="item-list" *ngFor="let itemMedia of item[i.id]">
+                <a [href]="itemMedia.MediaURL" target="_blank">{{itemMedia.MediaName}}</a>
+                <button class="btn-delete" (click)="onClickSetting(itemMedia, 'delete')">Xoá</button>
+
+              </div>
+
+            </div>
+            <span *ngIf="i.type === 'setting'">
+              <button *ngFor="let btn of i.data" [class]="btn.class"
+                (click)="onClickSetting(item, btn.type)">{{btn?.text}}</button>
+            </span>
+            <span *ngIf="i.type === 'document'">
+              <ng-container *ngFor="let btn of i.data">
+                <ng-container *ngIf="item.MediaCount > 0 && btn.type === 'download'">
+                  <button [class]="btn.class" (click)="onClickSetting(item, btn.type)">{{btn?.text}}</button>
+                </ng-container>
+                <ng-container *ngIf="item.MediaCount === 0 && btn.type === 'edit'">
+                  <button [class]="btn.class" (click)="onClickSetting(item, btn.type)">{{btn?.text}}</button>
+                </ng-container>
+                <ng-container *ngIf="btn.type === 'delete'">
+                  <button [class]="btn.class" (click)="onClickSetting(item, btn.type)">{{btn?.text}}</button>
+                </ng-container>
+              </ng-container>
+              
+              <!-- <button *ngIf="item.MediaCount > 0" class="btn-download" (click)="onClickSetting(item, 'download')">Tải
+                xuống</button>
+              <button *ngIf="item.MediaCount === 0" class="btn-edit" (click)="onClickSetting(item, 'edit')">Sửa</button>
+              <button class="btn-delete" (click)="onClickSetting(item, 'delete')">Xoá</button> -->
+
+            </span>
+            <span *ngIf="i.type === 'absence'">
+              <button *ngIf="item.Status === 2" class="btn-download" (click)="onClickSetting(item, 'confirm')">Đã xác nhận</button>
+              <button *ngIf="item.Status === 1" class="btn-download" (click)="onClickSetting(item, 'confirm')">Chưa xác
+                nhận</button>
+            </span>
+            <span *ngIf="i.type === 'absence_detail'">
+              <button class="btn-edit" (click)="onClickSetting(item, 'detail')">Chi tiết</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
