@@ -1,1 +1,84 @@
-<p>bus-edit works!</p>
+<div class="main-layout-header">
+  <div class="title">
+    <h2>{{busDetail?.BusName}}</h2>
+  </div>
+  <app-header-info></app-header-info>
+</div>
+
+
+<form action="" class="car">
+    <div class="title">
+      <h2 *ngIf="type == 1">Chiều đón</h2>
+      <h2 *ngIf="type == 2">Chiều trả</h2>
+    </div>
+    <div class="form-name-car">
+      <p>
+        <label class="titlle">Tên xe</label><input type="text" name="" placeholder="Tên xe">
+      </p>
+      <p>
+        <label class="titlle">Tài xế</label><input type="text" name="" placeholder="Tìm tài xế">
+      </p>
+      <p>
+        <label class="titlle">Giám sát</label><input type="text" name="" placeholder="Tìm giám sát">
+      </p>
+      <p>
+        <label class="titlle">Giờ xuất phát</label><input type="time" name="" placeholder="Thêm tài xế">
+      </p>
+    </div>
+    <div class="title">
+      <h2>Lộ trình</h2>
+    </div>
+    <div class="form-route-car">
+      <ul class="list-form-route-car">
+        <li class="list-form-route-car_li">
+          <span class="number-stt">1</span>
+          <span class="delete-route-car"><img src="assets/images/Group 45.svg"></span>
+          <span class="route-car-up"><img src="assets/images/Arrow-Down.svg" alt=""></span>
+          <span class="route-car-down"><img src="assets/images/Arrow-Down1.svg" alt=""></span>
+          <div class="box">
+            <p>
+              <label class="titlle">Địa chỉ</label><input type="text" name=""  placeholder="Nhập địa chỉ">
+            </p>
+            <p>
+              <label class="titlle">Đặc điểm</label><input type="text" name="" placeholder="Nhập địa chỉ">
+            </p>
+            <p>
+              <label class="titlle">Giờ tới</label><input type="time" name="" placeholder="Thêm tài xế">
+            </p>
+            <div class="list-member-route-car">
+              <label  class="titlle">Học sinh</label>
+              <div class="list-member">
+                <div class="box-member">
+                  <div class="toltal-member">
+                    <span>3 học sinh</span>
+                    <img src="assets/images/Vector 10.svg" alt="" class="arrow active">
+                  </div>
+                  <ul class="list-member-profile">
+                    <li class="list-member-profile_li">
+                      <div class="box-img"><img src="assets/images/Rectangle 76.svg" alt=""></div>
+                      <div class="box-txt">
+                        <ul class="list-member-profile-txt">
+                          <li><label>Tên:</label><span>Đặng Xuân Quang</span></li>
+                          <li><label>Lớp:</label><span>2A3</span></li>
+                          <li><label>SĐT Phụ huynh:</label><span>0978348999</span></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button class="edit-pick"><img src="assets/images/Vector1.svg" alt="">Sửa học sinh</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <button class="create-car"><img src="assets/images/Group 9135.svg" alt=""> Thêm thẻ</button>
+
+    <!-- Start button submit -->
+    <div class="btn-submit">
+      <button type="reset">Hủy bỏ</button>
+      <button type="submit">Lưu</button>
+    </div>
+    <!-- End button submit -->
+  </form>

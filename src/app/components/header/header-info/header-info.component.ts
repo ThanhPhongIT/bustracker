@@ -20,7 +20,7 @@ export class HeaderInfoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  btnLogout() {
+  btnLogout(): void {
     Swal.fire({
       title: 'Bạn có muốn đăng xuất không?',
       text: '',

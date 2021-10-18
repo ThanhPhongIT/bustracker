@@ -15,12 +15,15 @@ export class AuthInterceptor implements HttpInterceptor {
   private allowed = ['/assets', '/api/token'];
   constructor(private storage: LocalStorageService, private router: Router) {}
 
+  // tslint:disable-next-line:typedef
   intercept(req: HttpRequest<unknown>, next: HttpHandler) {
     if (this.allowed.some((url) => req.url.includes(url))) {
       return next.handle(req);
     }
-    let token = JSON.parse(localStorage.getItem('tokenData')).idToken.jwtToken;
-
+    let token = '';
+    if (localStorage.getItem('access_token')){
+      token = localStorage.getItem('access_token');
+    }
     if (token) {
       req = req.clone({
         setHeaders: {
@@ -45,6 +48,9 @@ export class AuthInterceptor implements HttpInterceptor {
             }
             // console.log(err);
           }
+        },
+        () => {
+
         }
       )
     );

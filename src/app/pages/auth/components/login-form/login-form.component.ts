@@ -39,15 +39,15 @@ export class LoginFormComponent implements OnInit, OnChanges {
   constructor() {}
 
   listLabelSub = [];
-  ngOnChanges() {
-    
+  ngOnChanges(): void {
+
   }
   ngOnInit(): void {
   }
-  submit() {
+  submit(): void {
     // if(this.form.invalid){
     //       console.log(this.form.invalid);
-          
+
     // }
     this.onSubmit.emit(this.form.value);
   }

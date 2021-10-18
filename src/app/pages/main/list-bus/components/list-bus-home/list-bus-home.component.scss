@@ -1,0 +1,90 @@
+.main-layout-header {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 255px;
+  .title {
+    font-weight: 600;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+  }
+}
+.title h2{
+  font-size: 26px;
+  line-height: 34px;
+  color: #23262F;
+  font-family: SF-Pro-Display-Bold;
+}
+
+button.create-car{
+  display: flex;
+  align-items: center;
+  border: 1px solid #0084f4;
+  color: #0084f4;
+  border-radius: 10px;
+  padding: 9px 20px 9px 12px;
+  background: none;
+  font-size: 16px;
+  line-height: 21px;
+  margin-left: 15px;
+  font-family: SF-Pro-Display-Semibold;
+  cursor: pointer;
+  img{
+    margin-right: 10px;
+  }
+}
+
+
+
+
+.list-car{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-gap: 13px;
+  margin-top: 90px;
+  li {
+    border: 1px solid #E6E8EC;
+    border-radius: 16px;
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    color: #23262F;
+    cursor: pointer;
+    .box-img{
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .box-txt{
+      margin-left: 14px;
+      .name-car{
+        font-size: 16px;
+        line-height: 21px;
+        font-family: SF-Pro-Display-Semibold;
+        padding: 6px 0 13px 0;
+      }
+      .desc-car{
+        font-size: 12px;
+        line-height: 16px;
+        font-family: SF-Pro-Display-Medium;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        text-decoration-line: underline;
+        color: #D70000;
+        img{
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

@@ -18,17 +18,14 @@ export class APIInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.spinner.show();
+    this.spinner.show().then(r => console.log('show'));
     const request = req.clone({
       url: `${environment.API_URL}/${req.url}`,
       setHeaders: {
         'Content-Type': 'application/json',
-        // 'X-CBH-VIETTEL':  'd96ed56b-a0c9-4fc8-9bb8-adcc285b904d-cbh-viettel'
       },
     });
-    return next.handle(
-      
-      request).pipe(
+    return next.handle(request).pipe(
         finalize(() => this.spinner.hide()),
         retry(1));
   }

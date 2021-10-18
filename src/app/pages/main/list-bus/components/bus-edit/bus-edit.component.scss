@@ -1,0 +1,389 @@
+.main-layout-header {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 235px;
+  background-color: #fafafa;
+  z-index: 10000;
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+  }
+}
+
+.number-stt{
+  width: 22px;
+  height: 22px;
+  background: #ff872b;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: SF-Pro-Display-Semibold;
+  margin-right: 14px;
+}
+.car{
+  margin-top: 90px;
+  label.titlle{
+    font-size: 14px;
+    line-height: 20px;
+    color: #23262F;
+    font-family: SF-Pro-Display-Semibold;
+    width: 100%;
+    max-width: 120px;
+    display: inline-block;
+  }
+  input{
+    background: #f4f5f6;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    line-height: 19px;
+    font-family: SF-Pro-Display-Regular;
+    border: none;
+    width: 100%;
+    max-width: 598px;
+    color: #23262F;
+    &[type=time]{
+      max-width: 100px;
+    }
+    &::placeholder {
+      color: #ACACB4;
+    }
+  }
+  .btn-submit{
+    margin: 30px 0 42px 0;
+    text-align: right;
+  }
+}
+.form-name-car{
+  margin: 38px 0;
+  p{
+    margin-bottom: 10px;
+  }
+
+}
+.form-route-car{
+  ul.list-form-route-car{
+    width: 100%;
+    max-width: 869px;
+    margin: 22px 0;
+    position: relative;
+    li.list-form-route-car_li{
+      background: #f4f5f6;
+      border-radius: 18px;
+      padding: 64px 24px 29px 24px;
+      position: relative;
+      margin-bottom: 10px;
+      input{
+        background: #fff;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .number-stt{
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 11;
+  }
+  .delete-route-car{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 11;
+    cursor: pointer;
+  }
+  .route-car-up{
+    position: absolute;
+    top: 79px;
+    right: 22px;
+    z-index: 11;
+    cursor: pointer;
+  }
+  .route-car-down{
+    position: absolute;
+    top: 116px;
+    right: 22px;
+    z-index: 11;
+    cursor: pointer;
+  }
+  .list-member-route-car{
+    display: flex;
+    align-items: flex-start;
+    .list-member {
+      .box-member{
+        width: 270px;
+        .list-member-profile{
+          background: #FFFFFF;
+          border-radius: 8px;
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-top: 20px;
+          li.list-member-profile_li{
+            padding: 11px 0px;
+            border-bottom: 1px solid #E6E8EC;
+            display: flex;
+            .list-member-profile-txt{
+              li{
+                padding: 0;
+              }
+            }
+          }
+        }
+        .list-member-profile-txt{
+          padding-left: 10px;
+          label{
+            margin-right: 3px;
+          }
+          li:nth-child(2),li:nth-child(3){
+            font-size: 12px;
+            line-height: 16px;
+            display: block;
+          }
+        }
+
+      }
+      .toltal-member{
+        background: #fff;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: SF-Pro-Display-Semibold;
+        border: none;
+        width: 100%;
+        color: #23262F;
+        display: flex;
+        justify-content: space-between;
+        img{
+          transform: rotate(-90deg);
+          cursor: pointer;
+        }
+      }
+      //button.edit-pick {
+      //  position: absolute;
+      //  top: 0;
+      //  margin: 0;
+      //  right: -14px;
+      //  width: max-content;
+      //  z-index: 11;
+      //}
+    }
+  }
+}
+
+.select-time{
+  margin-bottom: 28px;
+  input{
+    background: #f4f5f6;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #23262F;
+    font-family: SF-Pro-Display-Semibold;
+    padding: 12px 18px;
+    border: none;
+  }
+}
+
+.list-history-address_title{
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  font-family: SF-Pro-Display-Semibold;
+  margin: 27px 0 14px 0;
+}
+
+.list-history-address{
+  position: relative;
+  margin-bottom: 40px;
+  li{
+    padding-bottom: 5px;
+    width: 343px;
+    position: relative;
+    &.address_txt{
+      padding-left: 21px;
+      display: flex;
+      align-items: flex-start;
+      .time-address{
+        font-size: 14px;
+        line-height: 20px;
+        width: 49px;
+        color: #23262F;
+        font-family: SF-Pro-Display-Semibold;
+        position: relative;
+        display: inline-block;
+        margin-right: 15px;
+        &::after{
+          content: '';
+          width: 5px;
+          height: 1px;
+          background: #000;
+          display: block;
+          position: absolute;
+          top: 50%;
+          right: -5px;
+          transform: translateY(-50%);
+        }
+      }
+      .name-address{
+        font-size: 14px;
+        line-height: 19px;
+        color: #23262F;
+        font-family: SF-Pro-Display-Regular;
+        display: grid;
+      }
+    }
+    &.address_button {
+      padding-left: 8px;
+      display: flex;
+      align-items: center;
+      img{
+        width: 48px;
+        height: 48px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        margin-right: 16px;
+      }
+      .box-txt{
+        .name-member{
+          font-size: 14px;
+          line-height: 20px;
+          font-family: SF-Pro-Display-Semibold;
+          color: #23262F;
+        }
+      }
+      span.button{
+        border-radius: 90px;
+        font-size: 12px;
+        line-height: 16px;
+        width: 106px;
+        height: 28px;
+        cursor: pointer;
+        text-align: center;
+        font-family: SF-Pro-Display-Semibold;
+        color: #FFFFFF;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.button-go-out,&.button-go-in{
+          background: #ff872b;
+        }
+        &.button-allow{
+          background: #00c48c;
+        }
+        &.button-not-allow{
+          background: #d70000;
+        }
+      }
+    }
+    &.address_txt::before{
+      content: '';
+      background: #ff872b;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+      top: 7px;
+      left: 0;
+      z-index: 5;
+    }
+    &.address_txt:nth-child(1):before{
+      width: 9px;
+      height: 9px;
+      left: -1px;
+    }
+  }
+  &::after{
+    content: '';
+    background: #C9C9D0;
+    width: 1px;
+    height: calc(100% - 7px);
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+  }
+}
+button{
+  &.edit-pick{
+
+    margin: 0px 0 26px 60px;
+    font-size: 16px;
+    line-height: 21px;
+    font-family: SF-Pro-Display-Semibold;
+    background: none;
+    border: 1px solid #00c48c;
+    color:#00c48c;
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    img{
+      margin-right: 14px;
+    }
+    a{
+      color: #00c48c;
+      text-decoration: none;
+    }
+  }
+}
+button.create-car{
+  display: flex;
+  align-items: center;
+  border: 1px solid #0084f4;
+  color: #0084f4;
+  border-radius: 10px;
+  padding: 9px 20px 9px 12px;
+  background: none;
+  font-size: 16px;
+  line-height: 21px;
+  font-family: SF-Pro-Display-Semibold;
+  cursor: pointer;
+  img{
+    margin-right: 10px;
+  }
+}
+
+
+.btn-submit{
+  text-align: center;
+  margin-bottom: 100px;
+  button{
+    border: 1px solid #ff872b;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 21px;
+    font-family: SF-Pro-Display-Semibold;
+    background: #fff;
+    transition: all 0.5s;
+    width: 156px;
+    height: 48px;
+    cursor: pointer;
+    margin: 38px 11px 0 11px;
+  }
+  button[type=reset]{
+    color: #ff872b;
+  }
+  button[type=submit]{
+    background: #ff872b;
+  }
+}
