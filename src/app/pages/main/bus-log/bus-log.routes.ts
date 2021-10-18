@@ -3,7 +3,7 @@ import { BusLogComponent } from './bus-log.component';
 import { DetailBusLogComponent } from './detail-bus-log/detail-bus-log.component';
 import { ListBusLogComponent } from './list-bus-log/list-bus-log.component';
 
-export const listBusRoute: Routes = [
+export const busLogRoute: Routes = [
   {
     path: '',
     component: BusLogComponent,
