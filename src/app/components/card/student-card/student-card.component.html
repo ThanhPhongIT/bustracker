@@ -1,0 +1,10 @@
+<li class="list-member-profile_li" *ngFor="let item of ListStudent">
+  <div class="box-img"><img [src]="item?.StudentMediaURL" alt=""></div>
+  <div class="box-txt">
+    <ul class="list-member-profile-txt">
+      <li><label>Tên:</label><span>{{item?.StudentName}}</span></li>
+      <li><label>Lớp:</label><span>{{item?.ClassName}}</span></li>
+      <li><label>SĐT Phụ huynh:</label><span>{{item?.ParentPhone}}</span></li>
+    </ul>
+  </div>
+</li>

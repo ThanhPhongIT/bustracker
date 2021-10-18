@@ -1,0 +1,15 @@
+<div class="change-pw">
+  <div class="change-pw-title">
+    Thêm xe mới
+  </div>
+  <form [formGroup]="form">
+    <p>Tên xe</p>
+    <input type="text" id="name" formControlName="Name" placeholder="Nhập tên xe">
+  </form>
+
+  <div class="change-pw-btn">
+    <button class="btn-save" (click)="confirm()">Xác nhận</button>
+    <button class="btn-cancel" (click)="close()">Hủy</button>
+  </div>
+
+</div>

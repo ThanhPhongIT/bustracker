@@ -1,0 +1,25 @@
+<li class="list-box" *ngFor="let item of ListBusRoute; let i = index">
+  <span class="number-stt">i+1</span>
+  <ul class="list-box_ul">
+    <li>
+      <label class="title-address">Địa chỉ:</label><span>{{item?.StopName}}</span>
+    </li>
+    <li>
+      <label class="title-address">Giờ tới:</label><span>{{item?.ExpectedTime}}</span>
+    </li>
+
+    <!-- start list member -->
+    <li class="list-member">
+      <label class="title-address list-member_label">Học sinh:</label>
+      <div class="box-member">
+        <span>{{item?.StudentCount}} học sinh</span>
+        <img src="assets/images/Vector 10.svg" alt="" class="arrow active">
+        <ul class="list-member-profile" *ngIf="item?.StudentCount > 0">
+          <app-student-card [ListStudent]="item.StudentList"></app-student-card>
+        </ul>
+      </div>
+    </li>
+    <!-- end list member -->
+
+  </ul>
+</li>

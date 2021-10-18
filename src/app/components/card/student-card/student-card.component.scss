@@ -1,0 +1,15 @@
+li.list-member-profile_li{
+  padding: 10px 0;
+  border-bottom: 1px solid #E6E8EC;
+  label{
+    font-family: SF-Pro-Display-Semibold;
+    margin-right: 7px;
+  }
+  img.arrow{
+    margin-left: 122px;
+    cursor: pointer;
+    &.active{
+      transform: rotate(-90deg)
+    }
+  }
+}
