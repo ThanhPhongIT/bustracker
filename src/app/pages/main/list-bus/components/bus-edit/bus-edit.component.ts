@@ -147,9 +147,13 @@ export class BusEditComponent implements OnInit {
         // save student on route
         this.busDetail.RouteStopsList.forEach((item, i) => {
           this.routeBusService.addStudentOnRoute({RouteStopId: item.RouteStopId, StudentIdList: listStudentHold[i]}).subscribe((stop) => {
+            // this.getBusDetail();
           });
         });
       });
+      setTimeout(() => {
+        this.getBusDetail();
+      }, 500);
 
     });
 

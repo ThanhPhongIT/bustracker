@@ -51,6 +51,7 @@ export class AddStudentComponent implements OnInit {
       });
     });
     this.submitClicked.emit(listPass);
+    this.dialogRef.close();
     // console.log(this.listOfTagOptions);
   }
 
