@@ -3,10 +3,12 @@
     <div class="title">Cấp</div>
     <app-header-info></app-header-info>
   </div>
-  <div
-    [routerLink]="'/main/member/member-home/list-grade/1'"
-    (click)="action()"
-  >
-    Sang khối
-  </div>
+  <!--  <div-->
+  <!--    [routerLink]="'/main/member/member-home/list-grade/1'"-->
+  <!--    (click)="action()"-->
+  <!--  >-->
+  <!--  Sang khối-->
+  <!--  </div>-->
+  <app-base-card [dataCard]="listLevel" (callback)="routerTo($event)">
+  </app-base-card>
 </div>

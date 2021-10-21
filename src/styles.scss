@@ -16,17 +16,17 @@ $VT-HTBH-Admin-accent: mat-palette($mat-pink, A200, A100, A400);
 $VT-HTBH-Admin-warn: mat-palette($mat-red);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$VT-HTBH-Admin-theme: mat-light-theme(( color: ( primary: $VT-HTBH-Admin-primary, accent: $VT-HTBH-Admin-accent, warn: $VT-HTBH-Admin-warn, )));
+$VT-HTBH-Admin-theme: mat-light-theme((color: (primary: $VT-HTBH-Admin-primary, accent: $VT-HTBH-Admin-accent, warn: $VT-HTBH-Admin-warn,)));
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($VT-HTBH-Admin-theme);
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
 
-
+//@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 
 
 /* You can add global styles to this file, and also import other style files */
-
 
 
 html, body, div, span, applet, object, iframe,
@@ -49,25 +49,31 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol, ul {
   list-style: none;
 }
+
 blockquote, q {
   quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -78,18 +84,22 @@ table {
   font-family: SF-Pro-Display-Bold;
   src: url(assets/fonts/SF-Pro-Display-Bold.otf);
 }
+
 @font-face {
   font-family: SF-Pro-Display-Light;
   src: url(assets/fonts/SF-Pro-Display-Light.otf);
 }
+
 @font-face {
   font-family: SF-Pro-Display-Medium;
   src: url(assets/fonts/SF-Pro-Display-Medium.otf);
 }
+
 @font-face {
   font-family: SF-Pro-Display-Regular;
   src: url(assets/fonts/SF-Pro-Display-Regular.otf);
 }
+
 @font-face {
   font-family: SF-Pro-Display-Semibold;
   src: url(assets/fonts/SF-Pro-Display-Semibold.otf);
@@ -108,17 +118,17 @@ $background: #f4f5f6;
 @import './themes/global-class.scss';
 html,
 body {
-    font-family: SF-Pro-Display-Semibold;
-    margin: 0px;
-    height: 100%;
+  font-family: SF-Pro-Display-Semibold;
+  margin: 0px;
+  height: 100%;
 }
 
-input{
-  &:focus{
+input {
+  &:focus {
     outline: none !important;
   }
 }
 
 .mat-dialog-container {
-    padding: 0px !important;
+  padding: 0px !important;
 }

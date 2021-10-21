@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {TroubleLogComponent} from './trouble-log.component';
 import {TroubleLogListComponent} from './components/trouble-log-list/trouble-log-list.component';
 import {TroubleLogDetailComponent} from './components/trouble-log-detail/trouble-log-detail.component';
@@ -13,7 +13,7 @@ export const troubleRoute: Routes = [
         component: TroubleLogListComponent,
       },
       {
-        path: 'trouble-detail',
+        path: 'trouble-detail/:busId',
         component: TroubleLogDetailComponent
       },
       {

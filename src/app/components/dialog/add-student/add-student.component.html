@@ -1,0 +1,21 @@
+<div class="change-pw">
+  <div class="change-pw-title">
+    Sửa học sinh
+  </div>
+  <div class="form">
+    <p>Tên học sinh</p>
+    <nz-select nzMode="multiple" [(ngModel)]="listOfTagOptions">
+      <nz-option *ngFor="let option of listOfOption"
+                 [nzLabel]="option.label"
+                 [nzValue]="option.value"
+      ></nz-option>
+    </nz-select>
+  </div>
+
+
+  <div class="change-pw-btn">
+    <button class="btn-cancel" (click)="close()">Hủy bỏ</button>
+    <button class="btn-save" (click)="confirm()">Lưu</button>
+  </div>
+
+</div>

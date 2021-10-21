@@ -7,11 +7,12 @@ import {map, Observable} from 'rxjs';
   providedIn: 'root'
 })
 
-export class RouteBusService extends BaseApiService<any>{
+export class RouteBusService extends BaseApiService<any> {
   constructor(protected http: HttpClient) {
-      super( http, 'api/RouteStop');
+    super(http, 'api/RouteStop');
   }
-  deleteBus(routeStopId: string): Observable<any>{
+
+  deleteBus(routeStopId: string): Observable<any> {
     return this.delete(routeStopId).pipe(map(res => res));
   }
 
@@ -22,8 +23,8 @@ export class RouteBusService extends BaseApiService<any>{
       CoordinationLong?: boolean,
       CoordinationLat?: boolean,
       ExpectedTime: string
-    }): Observable<any>{
-    return this.create(data).pipe(map(res => res));
+    }[]): Observable<any> {
+    return this.http.post(`api/RouteStop`, data).pipe(map(res => res));
   }
 
 
@@ -32,15 +33,15 @@ export class RouteBusService extends BaseApiService<any>{
     CoordinationLong?: boolean,
     CoordinationLat?: boolean,
     ExpectedTime: string
-  }): Observable<any>{
+  }): Observable<any> {
     return this.http.put(`api/RouteStop/${RouteStopId}`, data).pipe(map(res => res));
   }
 
-  addStudentOnRoute(data: {RouteStopId: string, listStudent: any}): Observable<any>{
+  addStudentOnRoute(data: { RouteStopId: string, StudentIdList: any }): Observable<any> {
     return this.http.post(`api/RouteStopStudent`, data).pipe(map(res => res));
   }
 
-  deleteStudentFromRoute(RouteStopStudentId: string): Observable<any>{
+  deleteStudentFromRoute(RouteStopStudentId: string): Observable<any> {
     return this.http.delete(`api/RouteStopStudent/${RouteStopStudentId}`).pipe(map(res => res));
   }
 

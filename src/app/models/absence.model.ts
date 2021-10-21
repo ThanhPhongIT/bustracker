@@ -1,141 +1,51 @@
-import { CollumsModel } from "./base/collums.model";
-import { FilterModel } from "./base/filter.model";
+import {CollumsModel} from './base/collums.model';
 
 export class AbsenceModel {
 
-    public get collums(): Array<CollumsModel> {
-        return [
-            {
-                id: 'stt',
-                name: 'STT',
-                width: 50,
-                type: 'text',
-            },
-            {
-                id: 'StudentName',
-                name: 'Họ tên',
-                width: 300,
-                type: 'text',
-            },
-            {
-                id: 'ClassName',
-                name: 'Lớp',
-                width: 50,
-                type: 'text',
-            },
-            {
-                id: 'FromDate',
-                name: 'Bắt đầu',
-                width: 150,
-                type: 'date',
-            },
-            {
-                id: 'ToDate',
-                name: 'Kết thúc',
-                width: 150,
-                type: 'date',
-            },
-            {
-                id: 'Description',
-                name: 'Nội dung đơn',
-                width: 350,
-                type: 'text',
-            },
-            {
-                id: 'Information',
-                name: 'Thông tin đơn',
-                width: 350,
-                type: 'free-text',
-            },
-            {
-                id: '',
-                name: '',
-                width: 250,
-                type: 'absence',
-                data: [
-                ]
-            },
-            {
-                id: '',
-                name: '',
-                width: 80,
-                type: 'absence_detail',
-                data: [
-                ]
-            },
-        ];
-    }
-    public get collums_noAction(): Array<CollumsModel> {
-        return [
-            {
-                id: 'stt',
-                name: 'STT',
-                width: 50,
-                type: 'text',
-            },
-            {
-                id: 'StudentName',
-                name: 'Họ tên',
-                width: 300,
-                type: 'text',
-            },
-            {
-                id: 'ClassName',
-                name: 'Lớp',
-                width: 50,
-                type: 'text',
-            },
-            {
-                id: 'FromDate',
-                name: 'Bắt đầu',
-                width: 150,
-                type: 'date',
-            },
-            {
-                id: 'ToDate',
-                name: 'Kết thúc',
-                width: 150,
-                type: 'date',
-            },
-            {
-                id: 'Description',
-                name: 'Nội dung đơn',
-                width: 350,
-                type: 'text',
-            },
-            {
-                id: 'Information',
-                name: 'Thông tin đơn',
-                width: 350,
-                type: 'free-text',
-            },
-            // {
-            //     id: '',
-            //     name: '',
-            //     width: 250,
-            //     type: 'absence',
-            //     data: [
-            //     ]
-            // },
-            {
-                id: '',
-                name: '',
-                width: 80,
-                type: 'absence_detail',
-                data: [
-                ]
-            },
-        ];
-    }
-    public get btnActice(): Array<any> {
-        return [
-            {
-                class: 'btn-create',
-                text: '+  Thêm',
-                type: 'create',
-                icon: ''
-            },
-        ];
-    }
-
+  public get collums(): Array<CollumsModel> {
+    return [
+      // {
+      //   id: 'stt',
+      //   name: 'STT',
+      //   width: 50,
+      //   type: 'text',
+      // },
+      {
+        id: 'StudentName',
+        name: 'Họ tên',
+        width: 300,
+        type: 'text',
+      },
+      {
+        id: 'DOB',
+        name: 'Ngày sinh',
+        width: 250,
+        type: 'DOB',
+      },
+      {
+        id: 'ClassName',
+        name: 'Tên lớp',
+        width: 150,
+        type: 'text',
+      },
+      {
+        id: 'BusName',
+        name: 'Tên xe',
+        width: 250,
+        type: 'text',
+      },
+      {
+        id: 'StopName',
+        name: 'Điểm đón',
+        width: 350,
+        type: 'text',
+      },
+      {
+        id: 'ParentPhone',
+        name: 'SĐT phụ huynh',
+        width: 250,
+        type: 'free-text',
+      }
+    ];
+  }
 }

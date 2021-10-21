@@ -3,6 +3,10 @@
   <app-header-info></app-header-info>
 </div>
 <div>
-  <div [routerLink]="'/main/member/member-home/class/1'">Sang chi tiết lớp</div>
-  <br />
+
+  <app-base-card
+    [dataCard]="data"
+    (callback)="routerTo($event)"
+  >
+  </app-base-card>
 </div>

@@ -1,0 +1,19 @@
+<div class="main-layout-header">
+  <div class="title">
+    <h2>Danh sách xe</h2>
+  </div>
+  <app-header-info></app-header-info>
+</div>
+
+
+<ul class="list-car" *ngIf="listBus">
+  <li *ngFor="let bus of listBus" [routerLink]="'/main/bus-log/log-detail/' + bus.BusId">
+    <div class="box-img">
+      <img src="assets/images/Vector.svg" alt="">
+    </div>
+    <div class="box-txt">
+      <p class="name-car">{{bus.Name}}</p>
+
+    </div>
+  </li>
+</ul>

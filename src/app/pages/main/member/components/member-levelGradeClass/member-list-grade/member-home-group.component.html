@@ -1,5 +1,8 @@
 <div class="main-layout-header">
-  <div class="title">THCS</div>
+  <div class="title">Khối</div>
   <app-header-info></app-header-info>
 </div>
-<div [routerLink]="'/main/member/member-home/list-class/1'">Sang lớp</div>
+
+
+<app-base-card [dataCard]="data" (callback)="routerTo($event)">
+</app-base-card>

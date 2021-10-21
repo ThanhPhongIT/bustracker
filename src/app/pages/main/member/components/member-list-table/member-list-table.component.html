@@ -1,4 +1,11 @@
 <div class="main-layout-header">
-  <div class="title">Chi tiết lớp</div>
+  <div class="title">LỚP: {{classDetail?.Name}}</div>
   <app-header-info></app-header-info>
+</div>
+<div class="member-detail">
+
+  <app-table
+    [data]="data"
+    [tableData]="tableData"
+  ></app-table>
 </div>

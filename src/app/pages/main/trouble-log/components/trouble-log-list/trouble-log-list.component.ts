@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BusModel} from '../../../../../models/bus.model';
+import {BusService} from '../../../../../services/bus.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-trouble-log-list',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TroubleLogListComponent implements OnInit {
 
-  constructor() { }
+  listBus: BusModel[] = [];
+
+  constructor(
+    private busService: BusService,
+    private dialog: MatDialog
+  ) {
+  }
 
   ngOnInit(): void {
+    this.getListBus('');
+  }
+
+
+  getListBus(key): void {
+    this.busService.getListBus(key).subscribe((res) => {
+      this.listBus = res;
+    });
   }
 
 }

@@ -1,0 +1,37 @@
+.main-layout-header {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 235px;
+  background-color: #fafafa;
+  z-index: 10000;
+
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+  }
+}
+
+
+.select-time {
+  margin-bottom: 28px;
+  margin-top: 90px;
+
+  input {
+    background: #f4f5f6;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #23262F;
+    font-family: SF-Pro-Display-Semibold;
+    padding: 12px 18px;
+    border: none;
+  }
+}

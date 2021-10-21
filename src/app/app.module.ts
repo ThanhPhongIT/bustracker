@@ -1,17 +1,23 @@
-import { HandleDataService } from './services/handle-data.service';
-import { LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APIInterceptor } from './utils/interceptors/api.interceptor';
-import { AuthInterceptor } from './utils/interceptors/auth.interceptor';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { LoaderService } from './services/loader.service';
-import { CiCommonModule, S3FileService } from '@consult-indochina/common';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import {HandleDataService} from './services/handle-data.service';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouterModule} from '@angular/router';
+import {AppComponent} from './app.component';
+import {appRoutes} from './app.routes';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {APIInterceptor} from './utils/interceptors/api.interceptor';
+import {AuthInterceptor} from './utils/interceptors/auth.interceptor';
+import {HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common';
+import {LoaderService} from './services/loader.service';
+import {CiCommonModule, S3FileService} from '@consult-indochina/common';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {NZ_I18N, vi_VN} from 'ng-zorro-antd/i18n';
+import vi from '@angular/common/locales/vi';
+import {FormsModule} from '@angular/forms';
+
+registerLocaleData(vi);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +30,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         'https://li1jm77bc8.execute-api.ap-southeast-1.amazonaws.com/prod/presigned',
     }),
     NgxSpinnerModule,
+    FormsModule,
   ],
   providers: [
     LoaderService,
@@ -43,7 +50,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+    {provide: NZ_I18N, useValue: vi_VN},
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

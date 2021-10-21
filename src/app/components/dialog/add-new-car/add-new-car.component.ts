@@ -1,5 +1,5 @@
-import {Component, Inject, NgModule, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, NgModule, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
 import {BusService} from '../../../services/bus.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
@@ -14,19 +14,21 @@ export class AddNewCarComponent implements OnInit {
       Name: new FormControl('')
     }
   );
+
   constructor(
     private dialogRef: MatDialogRef<AddNewCarComponent>,
     private busService: BusService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
 
-  confirm(): void{
-   this.busService.addNewCar({Name: this.form.get('Name').value}).subscribe((res)=>{
-     this.dialogRef.close();
-   });
+  confirm(): void {
+    this.busService.addNewCar({Name: this.form.get('Name').value}).subscribe((res) => {
+      this.dialogRef.close();
+    });
   }
 
   close(): void {
@@ -40,4 +42,5 @@ export class AddNewCarComponent implements OnInit {
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [[AddNewCarComponent]]
 })
-export class AddNewCarComponentModule{}
+export class AddNewCarComponentModule {
+}

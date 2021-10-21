@@ -1,5 +1,5 @@
 <li class="list-box" *ngFor="let item of ListBusRoute; let i = index">
-  <span class="number-stt">i+1</span>
+  <span class="number-stt">{{i + 1}}</span>
   <ul class="list-box_ul">
     <li>
       <label class="title-address">Địa chỉ:</label><span>{{item?.StopName}}</span>

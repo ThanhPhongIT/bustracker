@@ -1,1 +1,98 @@
-<p>detail-bus-log works!</p>
+<div class="main-layout-header">
+  <div class="title">
+    <h2>{{busDetail?.BusName}}</h2>
+  </div>
+  <app-header-info></app-header-info>
+</div>
+
+
+<div class="select-time">
+  <input type="date" name="" id="" value="2021-07-14">
+</div>
+<mat-tab-group mat-align-tabs="start" class="list-pick">
+  <mat-tab label="Chiều đón">
+
+    <p class="list-history-address_title">{{busDetail?.BusName}}</p>
+    <ul class="list-history-address">
+      <ng-container *ngFor="let item of DepartList">
+        <li class="address_txt"><label class="time-address">{{item?.Time | date : 'hh:mm'}}</label>
+          <p class="name-address">{{item?.StopName}}
+            <span *ngIf="item?.TotalStudent > 0">({{item?.CountOnBusStudent}}/{{item?.TotalStudent}} học sinh)</span>
+          </p>
+        </li>
+        <li class="address_button" *ngFor="let student of item.StudentList">
+          <div class="box-img">
+            <img [src]="student?.MediaURL" alt="">
+          </div>
+          <div class="box-txt">
+            <span class="name-member">{{student?.StudentName}}</span>
+          </div>
+          <span class="button button-go-in" *ngIf="student?.Status === 1">Đã lên</span>
+          <span class="button button-allow" *ngIf="student?.Status === 3">Có phép</span>
+          <span class="button button-not-allow" *ngIf="student?.Status === 4">Không phép</span>
+        </li>
+      </ng-container>
+
+      <!--      <li class="address_txt"><label class="time-address">06:50</label>-->
+      <!--        <p class="name-address">Số 1 Ngụy như Kon Tum <span>(1/1 học sinh)</span></p></li>-->
+
+      <!--      <li class="address_txt"><label class="time-address">06:35</label>-->
+      <!--        <p class="name-address">120 Nguyễn Văn Huyên <span>(1/1 học sinh)</span></p></li>-->
+
+      <!--      <li class="address_txt"><label class="time-address">06:35</label>-->
+      <!--        <p class="name-address">Số 3 Khuất Duy Tiến <span>(2/2 học sinh)</span></p></li>-->
+
+      <!--      <li class="address_txt"><label class="time-address">06:20</label>-->
+      <!--        <p class="name-address">Số 2 Ngọc Lâm <span>(2/2 học sinh)</span></p></li>-->
+
+      <!--      <li class="address_button">-->
+      <!--        <div class="box-img">-->
+      <!--          <img src="assets/images/Rectangle 76.svg" alt="">-->
+      <!--        </div>-->
+      <!--        <div class="box-txt">-->
+      <!--          <span class="name-member">Nguyễn Văn Nam</span>-->
+      <!--        </div>-->
+      <!--        <span class="button button-go-in">Đã lên</span>-->
+      <!--      </li>-->
+
+    </ul>
+  </mat-tab>
+  <mat-tab label="Chiều trả">
+    <p class="list-history-address_title">{{busDetail?.BusName}}</p>
+    <ul class="list-history-address">
+      <ng-container *ngFor="let item of ReturnList">
+        <li class="address_txt"><label class="time-address">{{item?.Time | date : 'hh:mm'}}</label>
+          <p class="name-address">{{item?.StopName}}
+            <span *ngIf="item?.TotalStudent > 0">({{item?.CountOnBusStudent}}/{{item?.TotalStudent}} học sinh)</span>
+          </p>
+        </li>
+        <li class="address_button" *ngFor="let student of item.StudentList">
+          <div class="box-img">
+            <img [src]="student?.MediaURL" alt="">
+          </div>
+          <div class="box-txt">
+            <span class="name-member">{{student?.StudentName}}</span>
+          </div>
+          <span class="button button-go-in" *ngIf="student?.Status === 1">Đã lên</span>
+          <span class="button button-allow" *ngIf="student?.Status === 3">Có phép</span>
+          <span class="button button-not-allow" *ngIf="student?.Status === 4">Không phép</span>
+        </li>
+      </ng-container>
+    </ul>
+  </mat-tab>
+</mat-tab-group>
+<p>Đơn xin nghỉ chiều đón</p>
+<app-table
+  [data]="dataDepartList"
+  [tableData]="tableData"
+></app-table>
+<p>Đơn xin nghỉ chiều trả</p>
+<app-table
+  [data]="dataReturnList"
+  [tableData]="tableData"
+></app-table>
+
+
+
+
+
