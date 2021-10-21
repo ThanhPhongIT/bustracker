@@ -61,11 +61,12 @@
                 </p>
                 <p>
                   <label class="titlle">Đặc điểm</label>
-                  <input type="text" name="" placeholder="Nhập đặc điểm">
+                  <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                         (onAddressChange)="handleAddressChange($event, item)" placeholder="Nhập đặc điểm"/>
                 </p>
                 <p>
                   <label class="titlle">Giờ tới</label>
-                  <input type="time" formControlName="ExpectedTime" name="" placeholder="Thêm tài xế">
+                  <input style="min-width: 150px" type="time" formControlName="ExpectedTime" name="">
                 </p>
                 <div class="list-member-route-car">
                   <label class="titlle">Học sinh</label>
@@ -104,7 +105,7 @@
     </ul>
 
   </div>
-  <button class="create-car" (click)="addRoute( this.busDetail.RouteId, '', '', null)">
+  <button class="create-car" (click)="addRoute( this.busDetail.RouteId, '', '', null, '', '')">
     <img src="assets/images/Group 9135.svg" alt=""> Thêm thẻ
   </button>
 

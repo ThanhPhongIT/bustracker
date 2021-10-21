@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BusService} from '../../../../../services/bus.service';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
@@ -6,6 +6,8 @@ import {RouteBusService} from '../../../../../services/route-bus.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddStudentComponent} from '../../../../../components/dialog/add-student/add-student.component';
 import {MemberService} from '../../../../../services/member.service';
+import {Address} from 'ngx-google-places-autocomplete/objects/address';
+import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
 
 @Component({
   selector: 'app-bus-edit',
@@ -25,6 +27,11 @@ export class BusEditComponent implements OnInit {
   BusForm: FormGroup;
   routeStopForm: FormGroup;
   listStudent = [];
+  @ViewChild('placesRef') placesRef: GooglePlaceDirective;
+  options = {
+    types: [],
+    componentRestrictions: {country: 'VN'}
+  };
 
 
   constructor(
@@ -58,6 +65,13 @@ export class BusEditComponent implements OnInit {
     this.getListStudent('');
   }
 
+  handleAddressChange(address: Address, item): void {
+    // Do some stuff
+    console.log(address);
+    item.get('CoordinationLong').patchValue(address.geometry.location.lng());
+    item.get('CoordinationLat').patchValue(address.geometry.location.lat());
+    console.log(address, address.geometry.location.lat(), address.geometry.location.lng());
+  }
 
   getListStudent(key): void {
     this.memberService.searchStudent('').subscribe((res) => {
@@ -70,11 +84,13 @@ export class BusEditComponent implements OnInit {
   }
 
 
-  newRouteStop(routeId, name, time, listStudent): FormGroup {
+  newRouteStop(routeId, name, time, listStudent, CoordinationLong, CoordinationLat): FormGroup {
     return this.fb.group({
       RouteId: routeId,
       StopName: name,
       ExpectedTime: time,
+      CoordinationLong,
+      CoordinationLat,
       StudentList: [listStudent]
     });
   }
@@ -92,7 +108,7 @@ export class BusEditComponent implements OnInit {
       this.BusForm.get('Type').setValue(Number(this.type));
       this.BusForm.get('StartTime').setValue(this.busDetail.StartTime);
       this.busDetail.RouteStopsList.forEach((val) => {
-        this.addRoute(this.busDetail.RouteId, val.StopName, val.ExpectedTime, val.StudentList);
+        this.addRoute(this.busDetail.RouteId, val.StopName, val.ExpectedTime, val.StudentList, val.CoordinationLong, val.CoordinationLat);
       });
       console.log(this.routeStopArr.value);
     });
@@ -103,7 +119,6 @@ export class BusEditComponent implements OnInit {
 
     // Save bus info
     this.busService.editBus(this.BusForm.value, this.busId).subscribe((res) => {
-      this.getBusDetail();
     });
 
     const listStudentHold = [];
@@ -127,7 +142,9 @@ export class BusEditComponent implements OnInit {
       listRouteBus.push({
         RouteId: item.RouteId,
         StopName: item.StopName,
-        ExpectedTime: item.ExpectedTime,
+        ExpectedTime: item.getHours() + ':' + item.getMinutes(),
+        CoordinationLong: item.CoordinationLong,
+        CoordinationLat: item.CoordinationLat,
       });
 
 
@@ -151,13 +168,13 @@ export class BusEditComponent implements OnInit {
           });
         });
       });
-      setTimeout(() => {
-        this.getBusDetail();
-      }, 500);
+
 
     });
 
-
+    setTimeout(() => {
+      this.getBusDetail();
+    }, 1000);
   }
 
   editStudent(item, index): void {
@@ -180,8 +197,8 @@ export class BusEditComponent implements OnInit {
       });
   }
 
-  addRoute(routeId, name, time, listStudent): void {
-    this.routeStopArr.push(this.newRouteStop(routeId, name, time, listStudent));
+  addRoute(routeId, name, time, listStudent, CoordinationLong, CoordinationLat): void {
+    this.routeStopArr.push(this.newRouteStop(routeId, name, time, listStudent, CoordinationLong, CoordinationLat));
   }
 
   deleteRoute(lessonIndex: number): void {

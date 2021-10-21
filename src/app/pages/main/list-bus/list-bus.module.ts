@@ -15,6 +15,7 @@ import {RouterCardComponentModule} from '../../../components/card/route-card/rou
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AddStudentComponentModule} from '../../../components/dialog/add-student/add-student.component';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [ListBusComponent, ListBusHomeComponent, BusDetailComponent, BusEditComponent],
@@ -30,7 +31,8 @@ import {AddStudentComponentModule} from '../../../components/dialog/add-student/
     NzSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    AddStudentComponentModule
+    AddStudentComponentModule,
+    GooglePlaceModule
   ],
   exports: [ListBusComponent],
 })

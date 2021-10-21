@@ -7,10 +7,11 @@ import {TroubleLogDetailComponent} from './components/trouble-log-detail/trouble
 import {RouterModule} from '@angular/router';
 import {troubleRoute} from './trouble-log.routes';
 import {HeaderComponentModule} from '../../../components/header/header-component.module';
+import {TableBaseModule} from '../../../components/table/table.component';
 
 @NgModule({
   declarations: [TroubleLogComponent, TroubleLogListComponent, TroubleLogDetailComponent],
-  imports: [CommonModule, LayoutModule, RouterModule.forChild(troubleRoute), HeaderComponentModule],
+  imports: [CommonModule, LayoutModule, RouterModule.forChild(troubleRoute), HeaderComponentModule, TableBaseModule],
   exports: [TroubleLogComponent],
 })
 export class TroubleLogModule {

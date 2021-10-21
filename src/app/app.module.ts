@@ -15,6 +15,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {NZ_I18N, vi_VN} from 'ng-zorro-antd/i18n';
 import vi from '@angular/common/locales/vi';
 import {FormsModule} from '@angular/forms';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 
 registerLocaleData(vi);
 
@@ -31,6 +32,7 @@ registerLocaleData(vi);
     }),
     NgxSpinnerModule,
     FormsModule,
+    GooglePlaceModule
   ],
   providers: [
     LoaderService,

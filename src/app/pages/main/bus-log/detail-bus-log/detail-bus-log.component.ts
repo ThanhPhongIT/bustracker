@@ -71,17 +71,18 @@ export class DetailBusLogComponent implements OnInit {
   }
 
   getBusLogDetail(): void {
-    this.busHisService.getListHisBusByDay(this.busId, '12/12/2020').subscribe((res) => {
+    this.busHisService.getListHisBusByDay(this.busId, '2020-12-12').subscribe((res) => {
       this.DepartList = res.DepartList;
       this.ReturnList = res.ReturnList;
     });
   }
 
   getListAbsence(): void {
-    this.busHisService.getListAbsenceByDay(this.busId, '12/12/2020').subscribe((res) => {
-      this.dataReturnList = res.ReturnList;
-      this.dataDepartList = res.DepartList;
-      console.log(res);
-    });
+    this.busHisService.getListAbsenceByDay(this.busId, '2021-10-21').subscribe((res) => {
+        this.dataReturnList = res.ReturnList;
+        this.dataDepartList = res.DepartList;
+        console.log(res);
+      }
+    );
   }
 }

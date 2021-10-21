@@ -7,11 +7,12 @@ import {ResponeModel} from '../models/respone.model';
   providedIn: 'root'
 })
 
-export class TroubleService{
-  constructor(private http: HttpClient) {}
+export class TroubleService {
+  constructor(private http: HttpClient) {
+  }
 
-  getListTroubleByDay(busId: string, date: string): Observable<any>{
-    return this.http.get(`api/Issues?BusId=${busId}&Date=${date}`).pipe(map((res: ResponeModel) => res.Payload));
+  getListTroubleByDay(busId: string, date: string): Observable<any> {
+    return this.http.get(`api/Issue?BusId=${busId}&Date=${date}`).pipe(map((res: ResponeModel) => res.Payload));
   }
 
 }
