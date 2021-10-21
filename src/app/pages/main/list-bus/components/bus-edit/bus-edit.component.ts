@@ -27,6 +27,7 @@ export class BusEditComponent implements OnInit {
   BusForm: FormGroup;
   routeStopForm: FormGroup;
   listStudent = [];
+  time: Date | null = null;
   @ViewChild('placesRef') placesRef: GooglePlaceDirective;
   options = {
     types: [],
@@ -63,6 +64,12 @@ export class BusEditComponent implements OnInit {
     this.getListDriver();
     this.getListSupervisor();
     this.getListStudent('');
+  }
+
+  log(time: Date, item): void {
+    console.log(time, item);
+    item.get('ExpectedTime').patchValue(time.toTimeString());
+    // console.log(time && time.toTimeString());
   }
 
   handleAddressChange(address: Address, item): void {
@@ -108,7 +115,15 @@ export class BusEditComponent implements OnInit {
       this.BusForm.get('Type').setValue(Number(this.type));
       this.BusForm.get('StartTime').setValue(this.busDetail.StartTime);
       this.busDetail.RouteStopsList.forEach((val) => {
-        this.addRoute(this.busDetail.RouteId, val.StopName, val.ExpectedTime, val.StudentList, val.CoordinationLong, val.CoordinationLat);
+        const time = new Date(val.ExpectedTime).toTimeString().slice(0, 5);
+        console.log(time);
+        this.addRoute(
+          this.busDetail.RouteId,
+          val.StopName,
+          time,
+          val.StudentList, val.CoordinationLong,
+          val.CoordinationLat
+        );
       });
       console.log(this.routeStopArr.value);
     });
@@ -130,6 +145,7 @@ export class BusEditComponent implements OnInit {
       ExpectedTime: string
     }[] = [];
 
+    console.log(this.routeStopArr.value);
 
     this.routeStopArr.value.forEach((item, index) => {
       listStudentHold[index] = [];
@@ -142,7 +158,7 @@ export class BusEditComponent implements OnInit {
       listRouteBus.push({
         RouteId: item.RouteId,
         StopName: item.StopName,
-        ExpectedTime: item.getHours() + ':' + item.getMinutes(),
+        ExpectedTime: item.ExpectedTime,
         CoordinationLong: item.CoordinationLong,
         CoordinationLat: item.CoordinationLat,
       });
@@ -150,6 +166,7 @@ export class BusEditComponent implements OnInit {
 
     });
 
+    console.log(listRouteBus);
 
     // save bus route
     this.routeBusService.addBus(listRouteBus).subscribe(() => {
@@ -161,6 +178,7 @@ export class BusEditComponent implements OnInit {
           }
         });
 
+
         // save student on route
         this.busDetail.RouteStopsList.forEach((item, i) => {
           this.routeBusService.addStudentOnRoute({RouteStopId: item.RouteStopId, StudentIdList: listStudentHold[i]}).subscribe((stop) => {
@@ -168,7 +186,7 @@ export class BusEditComponent implements OnInit {
           });
         });
       });
-
+      // this.getBusDetail();
 
     });
 

@@ -16,6 +16,8 @@ import {NzSelectModule} from 'ng-zorro-antd/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AddStudentComponentModule} from '../../../components/dialog/add-student/add-student.component';
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
+import {NzTimePickerModule} from 'ng-zorro-antd/time-picker';
 
 @NgModule({
   declarations: [ListBusComponent, ListBusHomeComponent, BusDetailComponent, BusEditComponent],
@@ -32,7 +34,9 @@ import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
     FormsModule,
     ReactiveFormsModule,
     AddStudentComponentModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    NzDatePickerModule,
+    NzTimePickerModule
   ],
   exports: [ListBusComponent],
 })
