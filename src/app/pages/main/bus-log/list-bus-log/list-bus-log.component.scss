@@ -1,20 +1,4 @@
-.main-layout-header {
-  height: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 255px;
 
-  .title {
-    font-weight: 600;
-    font-size: 26px;
-    display: flex;
-    align-items: center;
-  }
-}
 
 .title h2 {
   font-size: 26px;

@@ -5,15 +5,17 @@
       #drawer
       class="example-sidsenav"
       mode="side"
-      [style.width.px]="235"
+      [style.width.px]="302"
     >
       <app-nav-menu [dataNavMenu]="dataNav"></app-nav-menu>
     </mat-drawer>
-    <div
-      class="example-sidenav-content"
-      [@routeAnimations]="prepareRoute(outlet)"
-    >
-      <router-outlet #outlet="outlet"></router-outlet>
+    <div class="example-layout-content">
+      <div
+        class="example-sidenav-content"
+        [@routeAnimations]="prepareRoute(outlet)"
+      >
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
     </div>
   </mat-drawer-container>
 </div>
