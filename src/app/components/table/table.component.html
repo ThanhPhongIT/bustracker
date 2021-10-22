@@ -68,7 +68,7 @@
             <span *ngIf="i.type === 'checkbox'"><input [id]="item.stt" class="checkbox" [checked]="item.check === true"
                 (change)="selectItem(item, $event.target.checked, index)" type="checkbox" /></span>
             <div class="data-content" *ngIf="i.type === 'number'" (click)="handleRouteLink(item)">
-              {{item[i.id] | number}}
+              {{item[i.id] | number}} a
             </div>
             <span class="data-content" *ngIf="i.type === 'boolean'"
               [class]="item.HasFeedback === false ? 'false' : 'true'" (click)="handleRouteLink(item)">

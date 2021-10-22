@@ -5,74 +5,73 @@
   </div>
   <app-header-info></app-header-info>
 </div>
-
-<mat-tab-group mat-align-tabs="start" class="list-pick">
-  <mat-tab label="Chiều đón">
-    <div class="list-pick-content" >
-      <button class="edit-pick" [routerLink]="['/main/list-bus/bus-edit/' + busId]"  [queryParams]="{ type: 1 }"><img src="assets/images/Vector1.svg" alt="">Chỉnh sửa</button>
-      <table>
-        <tr>
-          <th>Tài xế</th>
-          <td>{{busDetailPickup?.DriverName}}</td>
-        </tr>
-        <tr>
-          <th>SĐT Tài xế</th>
-          <td>{{busDetailPickup?.DriverName}}</td>
-        </tr>
-        <tr>
-          <th>Giám sát</th>
-          <td>{{busDetailPickup?.TeacherName}}</td>
-        </tr>
-        <tr>
-          <th>SĐT giám sát</th>
-          <td>{{busDetailPickup?.TeacherName}}</td>
-        </tr>
-        <tr>
-          <th>Giờ xuất phát</th>
-          <td>{{busDetailPickup?.StartTime}}</td>
-        </tr>
-        <tr>
-          <th>Lộ trình</th>
-          <td class="box">
-            <app-route-card [ListBusRoute]="busDetailPickup?.RouteStopsList"></app-route-card>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </mat-tab>
-  <mat-tab label="Chiều trả" >
-    <div class="list-pick-content">
-      <button class="edit-pick" [routerLink]="['/main/list-bus/bus-edit/' + busId]"  [queryParams]="{ type: 2}"><img src="assets/images/Vector1.svg" alt="">Chỉnh sửa</button>
-      <table>
-        <tr>
-          <th>Tài xế</th>
-          <td>{{busDetailBackup?.DriverName}}</td>
-        </tr>
-        <tr>
-          <th>SĐT Tài xế</th>
-          <td>{{busDetailBackup?.DriverName}}</td>
-        </tr>
-        <tr>
-          <th>Giám sát</th>
-          <td>{{busDetailBackup?.TeacherName}}</td>
-        </tr>
-        <tr>
-          <th>SĐT giám sát</th>
-          <td>{{busDetailBackup?.TeacherName}}</td>
-        </tr>
-        <tr>
-          <th>Giờ xuất phát</th>
-          <td>{{busDetailBackup?.StartTime}}</td>
-        </tr>
-        <tr>
-          <th>Lộ trình</th>
-          <td class="box">
-            <app-route-card [ListBusRoute]="busDetailBackup?.RouteStopsList"></app-route-card>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </mat-tab>
-</mat-tab-group>
-
-
+<div class="main-layout-content">
+  <mat-tab-group mat-align-tabs="start" class="list-pick">
+    <mat-tab label="Chiều đón">
+      <div class="list-pick-content" >
+        <button class="edit-pick" [routerLink]="['/main/list-bus/bus-edit/' + busId]"  [queryParams]="{ type: 1 }"><img src="assets/images/Vector1.svg" alt="">Chỉnh sửa</button>
+        <table>
+          <tr>
+            <th>Tài xế</th>
+            <td>{{busDetailPickup?.DriverName}}</td>
+          </tr>
+          <tr>
+            <th>SĐT Tài xế</th>
+            <td>{{busDetailPickup?.DriverName}}</td>
+          </tr>
+          <tr>
+            <th>Giám sát</th>
+            <td>{{busDetailPickup?.TeacherName}}</td>
+          </tr>
+          <tr>
+            <th>SĐT giám sát</th>
+            <td>{{busDetailPickup?.TeacherName}}</td>
+          </tr>
+          <tr>
+            <th>Giờ xuất phát</th>
+            <td>{{busDetailPickup?.StartTime}}</td>
+          </tr>
+          <tr>
+            <th>Lộ trình</th>
+            <td class="box">
+              <app-route-card [ListBusRoute]="busDetailPickup?.RouteStopsList"></app-route-card>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Chiều trả" >
+      <div class="list-pick-content">
+        <button class="edit-pick" [routerLink]="['/main/list-bus/bus-edit/' + busId]"  [queryParams]="{ type: 2}"><img src="assets/images/Vector1.svg" alt="">Chỉnh sửa</button>
+        <table>
+          <tr>
+            <th>Tài xế</th>
+            <td>{{busDetailBackup?.DriverName}}</td>
+          </tr>
+          <tr>
+            <th>SĐT Tài xế</th>
+            <td>{{busDetailBackup?.DriverName}}</td>
+          </tr>
+          <tr>
+            <th>Giám sát</th>
+            <td>{{busDetailBackup?.TeacherName}}</td>
+          </tr>
+          <tr>
+            <th>SĐT giám sát</th>
+            <td>{{busDetailBackup?.TeacherName}}</td>
+          </tr>
+          <tr>
+            <th>Giờ xuất phát</th>
+            <td>{{busDetailBackup?.StartTime}}</td>
+          </tr>
+          <tr>
+            <th>Lộ trình</th>
+            <td class="box">
+              <app-route-card [ListBusRoute]="busDetailBackup?.RouteStopsList"></app-route-card>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

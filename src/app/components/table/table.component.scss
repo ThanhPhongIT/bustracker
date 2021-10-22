@@ -234,14 +234,15 @@ th {
   }
 
   tbody {
-    height: 65px;
+    height: auto;
 
     tr {
-      height: 65px;
+      height: auto;
 
       td {
         .data-content {
-          height: 100%;
+          height: 58px;
+          display: flex;
           overflow: hidden;
           flex-direction: row;
           justify-content: center;

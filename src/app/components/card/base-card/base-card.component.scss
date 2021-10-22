@@ -17,11 +17,62 @@ ul ,li {
         position: relative;
         border: 1px solid #E6E8EC;
         margin: 0 13px 14px 0;
+        transition: all 0.5s;
+        padding: 11px;
+        &:hover{
+            background: #FF872A;
+            color: #fff;
+            .base-text{
+                p{
+                    color: #fff !important;
+                }
+                .total-group,.total-person{
+                    background: #fff !important;
+                }
+            }
+            .card-img{
+                &::before{
+                    opacity: 0.2 !important;
+                }
+            }
+            img{
+                opacity: 0;
+                &.show-hover{
+                    opacity: 1 !important;
+                }
+            }
+        }
         .card-img{
             padding: 11px;
+            position: relative;
+            width: 60px;
+            height: 60px;
+            &::before{
+                content: '';
+                background: #fff;
+                opacity: 0;
+                border-radius: 10px;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transition: all 0.5s;
+            }
+            img{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                &.show-hover{
+                    opacity: 0;
+                }
+            }
         }
         .card-info{
-            margin-left: 3px;
+            padding-left: 5px;
+            width: calc(100% - 60px);
             .base-header{
                 font-size: 18px;
                 font-weight: 600;

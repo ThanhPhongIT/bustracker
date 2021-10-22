@@ -1,16 +1,14 @@
 <div class="main-layout-header">
   <div class="title">
-    <h2>{{busDetail?.BusName}}</h2>
+    <h2>{{ busDetail?.BusName }}</h2>
   </div>
   <app-header-info></app-header-info>
 </div>
 
+<div class="main-layout-content">
+  <div class="select-time">
+    <input type="date" name="" id="" value="2021-07-14" />
+  </div>
 
-<div class="select-time">
-  <input type="date" name="" id="" value="2021-07-14">
+  <app-table [data]="data" [tableData]="tableData"></app-table>
 </div>
-
-<app-table
-  [data]="data"
-  [tableData]="tableData"
-></app-table>
