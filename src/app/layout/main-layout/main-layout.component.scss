@@ -8,16 +8,20 @@
     height: 100%;
   }
   .example-sidenav-content {
-    height: 100%;
-    width: calc(100%-235px);
+    min-height: calc(100vh - 38px);
+    width: 100%;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-section);
-    padding: 15px;
+    background-color: var(--color-bg-white);
+    border-radius: 36px;
   }
   .example-sidenav {
     padding: 10px;
     width: 235px;
     // background: var(--color-list-nav);
+  }
+
+  .example-layout-content{
+    padding: 19px 17px 19px 22px;
   }
 }

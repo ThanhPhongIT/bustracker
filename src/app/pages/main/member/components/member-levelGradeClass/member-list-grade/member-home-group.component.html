@@ -3,6 +3,8 @@
   <app-header-info></app-header-info>
 </div>
 
+<div class="main-layout-content">
+  <app-base-card [dataCard]="data" (callback)="routerTo($event)">
+  </app-base-card>
+</div>
 
-<app-base-card [dataCard]="data" (callback)="routerTo($event)">
-</app-base-card>

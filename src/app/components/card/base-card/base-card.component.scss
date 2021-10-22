@@ -5,40 +5,34 @@ ul ,li {
 }
 
 .card{
-    display: grid;
-    grid-template-columns: 327px 327px 327px ;
-    grid-gap: 16px;
-    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
     .base-card{
         cursor: pointer;
-        height: 86px;
-        width: 327px;
+        height: 82px;
+        width: 254px;
         border-radius: 15px;
         display: flex;
+        align-items: center;
         position: relative;
-        box-shadow: 1px 0px 1px 2px rgb(0 0 0 / 4%);
-    
+        border: 1px solid #E6E8EC;
+        margin: 0 13px 14px 0;
         .card-img{
-            margin: 12px;
-            img{
-                height: 62px;
-                width: 62px;
-                object-fit: cover;
-            }
+            padding: 11px;
         }
         .card-info{
-            margin: 12px 0px;
+            margin-left: 3px;
             .base-header{
                 font-size: 18px;
                 font-weight: 600;
                 line-height: 24px;
-    
+                margin-bottom: 13px;
             }
     
             .base-text{
-                font-size: 15px;
+                font-size: 12px;
                 font-weight: 500;
-                line-height: 20px;
+                line-height: 14px;
                 align-items: center;
                 display: flex;
                 p{
@@ -49,14 +43,14 @@ ul ,li {
                 .total-group{
                     width: 8px;
                     height: 8px;
-                    margin-right: 10px;
+                    margin-right: 6px;
                     border-radius: 50%;
                     background-color:#00C48C;
                 }
                 .total-person{
                     width: 8px;
                     height: 8px;
-                    margin: 0 10px 0 10px;
+                    margin: 0 6px 0 16px;
                     border-radius: 50%;
                     background: #0084F4;
                     ;

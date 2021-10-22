@@ -2,7 +2,11 @@
   <img src="assets/img/logo-billgates.png" alt="" />
 </div>
 
-<div
+<div class="title-sidebar">
+  <p>Menu</p>
+</div>
+<div class="menu">
+  <div
   *ngFor="let i of dataNavMenu?.list"
   [routerLink]="[i.linkURL]"
   class="nav-menu"
@@ -15,5 +19,10 @@
     {{ i.name }}
   </div>
 </div>
+</div>
 
+<button>
+  <img src="assets/img/nav/Group 9160.svg" alt="">
+  <span>BGS Edu</span>
+</button>
 <!-- [routerLinkActive]="['nav-menu','nav-menu-active']" -->
