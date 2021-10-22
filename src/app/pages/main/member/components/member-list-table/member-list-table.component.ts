@@ -40,8 +40,19 @@ export class MemberDetailComponent implements OnInit {
 
   getListStudentOfClass(): void {
     this.memberService.getListStudentClass(this.classId).subscribe(res => {
-      if (res !== null) {
+      if (res.length > 0) {
         this.data = res;
+      } else {
+        this.data = [
+          {
+            StudentName: 'sdfdsf',
+            DOB: '12/12/2020',
+            DepartBus: 'dsdfsd',
+            DepartStop: 'sdfdsfdf',
+            ReturnBus: 'scdfdsf',
+            ReturnStop: 'sdsdfds'
+          }
+        ];
       }
     });
   }

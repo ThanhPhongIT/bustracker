@@ -8,10 +8,11 @@ import {RouterModule} from '@angular/router';
 import {troubleRoute} from './trouble-log.routes';
 import {HeaderComponentModule} from '../../../components/header/header-component.module';
 import {TableBaseModule} from '../../../components/table/table.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [TroubleLogComponent, TroubleLogListComponent, TroubleLogDetailComponent],
-  imports: [CommonModule, LayoutModule, RouterModule.forChild(troubleRoute), HeaderComponentModule, TableBaseModule],
+  imports: [CommonModule, LayoutModule, RouterModule.forChild(troubleRoute), HeaderComponentModule, TableBaseModule, FormsModule],
   exports: [TroubleLogComponent],
 })
 export class TroubleLogModule {

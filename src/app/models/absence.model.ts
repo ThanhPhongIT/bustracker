@@ -13,7 +13,7 @@ export class AbsenceModel {
       {
         id: 'StudentName',
         name: 'Họ tên',
-        width: 300,
+        width: 250,
         type: 'text',
       },
       {
@@ -44,7 +44,7 @@ export class AbsenceModel {
         id: 'ParentPhone',
         name: 'SĐT phụ huynh',
         width: 250,
-        type: 'free-text',
+        type: 'text',
       }
     ];
   }

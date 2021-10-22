@@ -53,7 +53,7 @@
       </div>
       <div class="item">
         <label class="titlle">Giờ xuất phát</label>
-        <input class="start-time" type="time" formControlName="StartTime" />
+        <input class="start-time" type="time" formControlName="StartTime"/>
       </div>
     </form>
     <div class="title">
@@ -69,7 +69,7 @@
               <li class="list-form-route-car_li" [formGroupName]="i">
                 <span class="number-stt">{{ i + 1 }}</span>
                 <span class="delete-route-car" (click)="deleteRoute(i)"
-                  ><img src="assets/images/Group 45.svg" alt=""
+                ><img src="assets/images/Group 45.svg" alt=""
                 /></span>
                 <span
                   class="route-car-up"
@@ -77,12 +77,12 @@
                   *ngIf="i !== 0"
                 >
                   <img src="assets/images/Arrow-Down.svg" alt=""
-                /></span>
+                  /></span>
                 <span
                   class="route-car-down"
                   (click)="carDown(item, i)"
                   *ngIf="i !== routeStopArr.controls.length"
-                  ><img src="assets/images/Arrow-Down1.svg" alt=""
+                ><img src="assets/images/Arrow-Down1.svg" alt=""
                 /></span>
 
                 <div class="box">
@@ -129,7 +129,7 @@
                           *ngIf="item.value.StudentList"
                         >
                           <span
-                            >{{ item.value.StudentList.length }} học sinh</span
+                          >{{ item.value.StudentList.length }} học sinh</span
                           >
                           <img
                             src="assets/images/Vector 10.svg"
@@ -139,7 +139,7 @@
                         </div>
                       </div>
                       <button class="edit-pick" (click)="editStudent(item, i)">
-                        <img src="assets/images/Vector1.svg" alt="" />Sửa học
+                        <img src="assets/images/Vector1.svg" alt=""/>Sửa học
                         sinh
                       </button>
                     </div>
@@ -155,7 +155,7 @@
       class="create-car"
       (click)="addRoute(this.busDetail.RouteId, '', '', null, '', '')"
     >
-      <img src="assets/images/Group 9135.svg" alt="" /> Thêm thẻ
+      <img src="assets/images/Group 9135.svg" alt=""/> Thêm thẻ
     </button>
 
     <!-- Start button submit -->

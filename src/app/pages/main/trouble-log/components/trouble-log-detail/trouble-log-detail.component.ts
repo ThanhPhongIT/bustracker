@@ -15,6 +15,9 @@ export class TroubleLogDetailComponent implements OnInit {
   config = new TroubleModel();
   tableData;
   data = [];
+  check = false;
+  indexClass = 0;
+  datePick = new Date().toISOString().slice(0, 10);
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +30,18 @@ export class TroubleLogDetailComponent implements OnInit {
   ngOnInit(): void {
     this.tableData = this.config.collums;
     this.getBusDetail();
-    this.getListTrouble();
+
+    this.getListTrouble(this.datePick);
+  }
+
+  refershData(ev): void {
+    this.getListTrouble(ev);
+  }
+
+  checkClass(i): void {
+    this.indexClass = i;
+    // tslint:disable-next-line:no-unused-expression
+    this.check !== this.check;
   }
 
 
@@ -38,8 +52,8 @@ export class TroubleLogDetailComponent implements OnInit {
     });
   }
 
-  getListTrouble(): void {
-    this.troubleService.getListTroubleByDay(this.busId, '2021-07-21').subscribe((res) => {
+  getListTrouble(date): void {
+    this.troubleService.getListTroubleByDay(this.busId, date).subscribe((res) => {
       console.log(res);
       this.data = res;
     });

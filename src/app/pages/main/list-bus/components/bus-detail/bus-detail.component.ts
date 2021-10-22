@@ -24,17 +24,18 @@ export class BusDetailComponent implements OnInit {
   }
 
 
-  getBusDetail(): void{
+  getBusDetail(): void {
     this.busService.getBusDetail(this.busId).subscribe((res) => {
-      res.forEach((val) => {
-        if (val.Type === 1){
-          this.busDetailPickup = val;
-        }else{
-          this.busDetailBackup = val;
-        }
-      });
-      console.log(res);
-    });
+        console.log(res);
+        res.forEach((val) => {
+          if (val.Type === 1) {
+            this.busDetailPickup = val;
+          } else {
+            this.busDetailBackup = val;
+          }
+        });
+      }
+    );
   }
 
 
