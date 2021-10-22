@@ -5,15 +5,16 @@
   <app-header-info></app-header-info>
 </div>
 
+<div class="main-layout-content">
+  <ul class="list-car" *ngIf="listBus">
+    <li *ngFor="let bus of listBus" [routerLink]="'/main/bus-log/log-detail/' + bus.BusId">
+      <div class="box-img">
+        <img src="assets/images/Vector.svg" alt="">
+      </div>
+      <div class="box-txt">
+        <p class="name-car">{{bus.Name}}</p>
 
-<ul class="list-car" *ngIf="listBus">
-  <li *ngFor="let bus of listBus" [routerLink]="'/main/bus-log/log-detail/' + bus.BusId">
-    <div class="box-img">
-      <img src="assets/images/Vector.svg" alt="">
-    </div>
-    <div class="box-txt">
-      <p class="name-car">{{bus.Name}}</p>
-
-    </div>
-  </li>
-</ul>
+      </div>
+    </li>
+  </ul>
+</div>
