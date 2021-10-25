@@ -117,7 +117,7 @@
                   <div class="list-member-route-car">
                     <label class="titlle">Học sinh</label>
                     <div class="list-member">
-                      <div class="box-member">
+                      <div class="box-member" [class.active]="isActive[i]">
                         <div
                           class="toltal-member"
                           *ngIf="item.value.StudentList === null"
@@ -134,10 +134,11 @@
                           <img
                             src="assets/images/Vector 10.svg"
                             alt=""
-                            class="arrow active"
+                            class="arrow"
+                            (click)="hiddenItems[i] = !hiddenItems[i]; isActive[i] = !isActive[i]"
                           />
                         </div>
-                        <ul class="list-member-profile">
+                        <ul class="list-member-profile" *ngIf="hiddenItems[i]">
                           <li
                             class="list-member-profile_li"
                             *ngFor="let std of item.value.StudentList"

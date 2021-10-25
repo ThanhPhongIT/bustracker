@@ -21,7 +21,8 @@ export class BusEditComponent implements OnInit {
   busDetail: any;
   drivers = [];
   teachers = [];
-
+  hiddenItems:any ={};
+  isActive:any ={};
   // TODO create form group
   // 3 form group: BusForm, RouteStopForm, StudentForm
   BusForm: FormGroup;
