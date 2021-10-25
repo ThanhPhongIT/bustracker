@@ -9,11 +9,12 @@ import {StudentCardComponentModule} from '../student-card/student-card.component
 })
 export class RouteCardComponent implements OnInit {
   @Input() ListBusRoute: any;
+  hiddenItems:any ={};
+  isActive:any ={};
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
 
 @NgModule({

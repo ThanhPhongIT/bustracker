@@ -11,10 +11,10 @@
     <!-- start list member -->
     <li class="list-member">
       <label class="title-address list-member_label">Học sinh:</label>
-      <div class="box-member">
+      <div class="box-member" [class.active]="isActive[i]">
         <span>{{item?.StudentCount}} học sinh</span>
-        <img src="assets/images/Vector 10.svg" alt="" class="arrow active">
-        <ul class="list-member-profile" *ngIf="item?.StudentCount > 0">
+        <img src="assets/images/Vector 10.svg" alt="" class="arrow" (click)="hiddenItems[i] = !hiddenItems[i];isActive[i] = !isActive[i]">
+        <ul class="list-member-profile" *ngIf="item?.StudentCount > 0 && hiddenItems[i]">
           <app-student-card [ListStudent]="item.StudentList"></app-student-card>
         </ul>
       </div>
