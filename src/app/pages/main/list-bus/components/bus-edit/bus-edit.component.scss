@@ -1,10 +1,9 @@
-
 .title h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
   line-height: 34px;
-  color: #23262F;
+  color: #23262f;
 }
 
 .number-stt {
@@ -26,7 +25,7 @@
   label.titlle {
     font-size: 14px;
     line-height: 20px;
-    color: #23262F;
+    color: #23262f;
     font-family: SF-Pro-Display-Semibold;
     width: 100%;
     max-width: 120px;
@@ -43,14 +42,14 @@
     border: none;
     width: 100%;
     max-width: 598px;
-    color: #23262F;
+    color: #23262f;
 
-    &[type=time] {
+    &[type="time"] {
       max-width: 100px;
     }
 
     &::placeholder {
-      color: #ACACB4;
+      color: #acacb4;
     }
   }
 
@@ -87,10 +86,9 @@
       line-height: 20px;
       /* identical to box height, or 143% */
 
-
       /* #23262F */
 
-      color: #23262F;
+      color: #23262f;
     }
 
     nz-select {
@@ -99,12 +97,12 @@
 
       ::ng-deep .ant-select-selector {
         position: relative;
-        background-color: #F4F5F6;
+        background-color: #f4f5f6;
         border: none;
         border-radius: 8px;
         height: 44px;
         display: flex;
-        transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         align-items: center;
 
         padding-left: 17px;
@@ -114,7 +112,6 @@
         }
       }
     }
-
   }
 }
 
@@ -178,13 +175,13 @@
       .box-member {
         width: 270px;
         float: left;
-        &.active{
-          .arrow{
+        &.active {
+          .arrow {
             transform: rotate(-90deg);
           }
         }
         .list-member-profile {
-          background: #FFFFFF;
+          background: #ffffff;
           border-radius: 8px;
           padding-left: 20px;
           padding-right: 20px;
@@ -192,9 +189,9 @@
 
           li.list-member-profile_li {
             padding: 11px 0px;
-            border-bottom: 1px solid #E6E8EC;
+            border-bottom: 1px solid #e6e8ec;
             display: flex;
-            &:last-child{
+            &:last-child {
               border-bottom: none;
             }
             .list-member-profile-txt {
@@ -212,13 +209,13 @@
             margin-right: 3px;
           }
 
-          li:nth-child(2), li:nth-child(3) {
+          li:nth-child(2),
+          li:nth-child(3) {
             font-size: 12px;
             line-height: 16px;
             display: block;
           }
         }
-
       }
 
       .toltal-member {
@@ -230,7 +227,7 @@
         font-family: SF-Pro-Display-Semibold;
         border: none;
         width: 100%;
-        color: #23262F;
+        color: #23262f;
         display: flex;
         justify-content: space-between;
 
@@ -260,7 +257,7 @@
     border-radius: 8px;
     font-size: 14px;
     line-height: 20px;
-    color: #23262F;
+    color: #23262f;
     font-family: SF-Pro-Display-Semibold;
     padding: 12px 18px;
     border: none;
@@ -293,14 +290,14 @@
         font-size: 14px;
         line-height: 20px;
         width: 49px;
-        color: #23262F;
+        color: #23262f;
         font-family: SF-Pro-Display-Semibold;
         position: relative;
         display: inline-block;
         margin-right: 15px;
 
         &::after {
-          content: '';
+          content: "";
           width: 5px;
           height: 1px;
           background: #000;
@@ -315,7 +312,7 @@
       .name-address {
         font-size: 14px;
         line-height: 19px;
-        color: #23262F;
+        color: #23262f;
         font-family: SF-Pro-Display-Regular;
         display: grid;
       }
@@ -339,7 +336,7 @@
           font-size: 14px;
           line-height: 20px;
           font-family: SF-Pro-Display-Semibold;
-          color: #23262F;
+          color: #23262f;
         }
       }
 
@@ -352,7 +349,7 @@
         cursor: pointer;
         text-align: center;
         font-family: SF-Pro-Display-Semibold;
-        color: #FFFFFF;
+        color: #ffffff;
         position: absolute;
         top: 50%;
         right: 0;
@@ -362,7 +359,8 @@
         align-items: center;
         justify-content: center;
 
-        &.button-go-out, &.button-go-in {
+        &.button-go-out,
+        &.button-go-in {
           background: #ff872b;
         }
 
@@ -377,7 +375,7 @@
     }
 
     &.address_txt::before {
-      content: '';
+      content: "";
       background: #ff872b;
       width: 7px;
       height: 7px;
@@ -397,8 +395,8 @@
   }
 
   &::after {
-    content: '';
-    background: #C9C9D0;
+    content: "";
+    background: #c9c9d0;
     width: 1px;
     height: calc(100% - 7px);
     position: absolute;
@@ -409,7 +407,6 @@
 
 button {
   &.edit-pick {
-
     margin-left: 14px;
     font-size: 16px;
     line-height: 21px;
@@ -452,7 +449,6 @@ button.create-car {
   }
 }
 
-
 .btn-submit {
   text-align: center;
   margin-bottom: 100px;
@@ -472,11 +468,11 @@ button.create-car {
     margin: 38px 11px 0 11px;
   }
 
-  button[type=reset] {
+  button[type="reset"] {
     color: #ff872b;
   }
 
-  button[type=submit] {
+  button[type="submit"] {
     background: #ff872b;
   }
 }
