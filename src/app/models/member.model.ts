@@ -1,14 +1,13 @@
-import {CollumsModel} from './base/collums.model';
+import { CollumsModel } from './base/collums.model';
 
 export class MemberModel {
-
   public get collums(): Array<CollumsModel> {
     return [
       {
         id: 'stt',
         name: 'STT',
         width: 50,
-        type: 'text'
+        type: 'stt',
       },
       {
         id: 'StudentName',

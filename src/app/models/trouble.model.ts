@@ -1,14 +1,13 @@
-import {CollumsModel} from './base/collums.model';
+import { CollumsModel } from './base/collums.model';
 
 export class TroubleModel {
-
   public get collums(): Array<CollumsModel> {
     return [
       {
         id: 'stt',
         name: 'Stt',
         width: 50,
-        type: 'text'
+        type: 'stt',
       },
       {
         id: 'Description',
@@ -34,7 +33,7 @@ export class TroubleModel {
         name: 'HS liên quan',
         width: 200,
         type: 'group',
-      }
+      },
     ];
   }
 }
