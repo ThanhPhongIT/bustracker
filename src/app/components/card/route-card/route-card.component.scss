@@ -14,9 +14,8 @@ li.list-box{
     }
     img.arrow{
       margin-left: 12px;
-      &.active{
-        transform: rotate(-90deg)
-      }
+      cursor: pointer;
+      transition: all 0.5s;
     }
   }
 }
@@ -55,6 +54,15 @@ li.list-box{
             }
           }
         }
+      }
+    }
+    &.active{
+      .arrow{
+        transform: rotate(-90deg);
+      }
+      .list-member-profile{
+        max-height: max-content;
+        opacity: 1;
       }
     }
   }
