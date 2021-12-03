@@ -1,28 +1,37 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {BusService} from '../../../../../services/bus.service';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {RouteBusService} from '../../../../../services/route-bus.service';
-import {MatDialog} from '@angular/material/dialog';
-import {AddStudentComponent} from '../../../../../components/dialog/add-student/add-student.component';
-import {MemberService} from '../../../../../services/member.service';
-import {Address} from 'ngx-google-places-autocomplete/objects/address';
-import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
+import { ConfirmDeleteComponent } from './../../../../../components/dialog/confirm-delete/confirm-delete.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BusService } from '../../../../../services/bus.service';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { RouteBusService } from '../../../../../services/route-bus.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddStudentComponent } from '../../../../../components/dialog/add-student/add-student.component';
+import { MemberService } from '../../../../../services/member.service';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Location } from '@angular/common';
+import { forkJoin } from 'rxjs';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-bus-edit',
   templateUrl: './bus-edit.component.html',
-  styleUrls: ['./bus-edit.component.scss']
+  styleUrls: ['./bus-edit.component.scss'],
 })
 export class BusEditComponent implements OnInit {
-
   busId = '';
   type = 1;
   busDetail: any;
   drivers = [];
   teachers = [];
-  hiddenItems:any ={};
-  isActive:any ={};
+  hiddenItems: any = {};
+  isActive: any = {};
   // TODO create form group
   // 3 form group: BusForm, RouteStopForm, StudentForm
   BusForm: FormGroup;
@@ -32,9 +41,8 @@ export class BusEditComponent implements OnInit {
   @ViewChild('placesRef') placesRef: GooglePlaceDirective;
   options = {
     types: [],
-    componentRestrictions: {country: 'VN'}
+    componentRestrictions: { country: 'VN' },
   };
-
 
   constructor(
     private route: ActivatedRoute,
@@ -42,21 +50,25 @@ export class BusEditComponent implements OnInit {
     private fb: FormBuilder,
     private routeBusService: RouteBusService,
     private dialog: MatDialog,
-    private memberService: MemberService
+    private memberService: MemberService,
+    private location: Location,
+    private message: NzMessageService
   ) {
     this.busId = this.route.snapshot.params.busId;
     this.type = this.route.snapshot.queryParams.type;
     this.BusForm = new FormGroup({
-      Name: new FormControl(''),
+      Name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(30),
+      ]),
       TeacherId: new FormControl(0),
       DriverId: new FormControl(0),
       Type: new FormControl(0),
       StartTime: new FormControl(''),
     });
 
-
     this.routeStopForm = this.fb.group({
-      routeStopArr: this.fb.array([])
+      routeStopArr: this.fb.array([]),
     });
   }
 
@@ -67,10 +79,18 @@ export class BusEditComponent implements OnInit {
     this.getListStudent('');
   }
 
+  // tslint:disable-next-line: typedef
+  get name() {
+    return this.BusForm.get('Name');
+  }
+
+  back(): void {
+    this.location.back();
+  }
+
   log(time: Date, item): void {
     console.log(time, item);
     item.get('ExpectedTime').patchValue(time.toTimeString());
-    // console.log(time && time.toTimeString());
   }
 
   handleAddressChange(address: Address, item): void {
@@ -78,7 +98,11 @@ export class BusEditComponent implements OnInit {
     console.log(address);
     item.get('CoordinationLong').patchValue(address.geometry.location.lng());
     item.get('CoordinationLat').patchValue(address.geometry.location.lat());
-    console.log(address, address.geometry.location.lat(), address.geometry.location.lng());
+    console.log(
+      address,
+      address.geometry.location.lat(),
+      address.geometry.location.lng()
+    );
   }
 
   getListStudent(key): void {
@@ -91,15 +115,21 @@ export class BusEditComponent implements OnInit {
     return this.routeStopForm.controls.routeStopArr as FormArray;
   }
 
-
-  newRouteStop(routeId, name, time, listStudent, CoordinationLong, CoordinationLat): FormGroup {
+  newRouteStop(
+    routeId,
+    name,
+    time,
+    listStudent,
+    CoordinationLong,
+    CoordinationLat
+  ): FormGroup {
     return this.fb.group({
       RouteId: routeId,
       StopName: name,
       ExpectedTime: time,
       CoordinationLong,
       CoordinationLat,
-      StudentList: [listStudent]
+      StudentList: [listStudent],
     });
   }
 
@@ -122,7 +152,8 @@ export class BusEditComponent implements OnInit {
           this.busDetail.RouteId,
           val.StopName,
           time,
-          val.StudentList, val.CoordinationLong,
+          val.StudentList,
+          val.CoordinationLong,
           val.CoordinationLat
         );
       });
@@ -130,20 +161,24 @@ export class BusEditComponent implements OnInit {
     });
   }
 
-
   saveBusRoute(): void {
-
     // Save bus info
-    this.busService.editBus(this.BusForm.value, this.busId).subscribe((res) => {
-    });
+    this.busService.editBus(this.BusForm.value, this.busId).subscribe(
+      (res) => {
+        this.message.success('Chỉnh sửa thông tin xe thành công');
+      },
+      (err) => {
+        this.message.error(err.error.Message);
+      }
+    );
 
     const listStudentHold = [];
     const listRouteBus: {
-      RouteId: number,
-      StopName: string,
-      CoordinationLong?: boolean,
-      CoordinationLat?: boolean,
-      ExpectedTime: string
+      RouteId: number;
+      StopName: string;
+      CoordinationLong?: boolean;
+      CoordinationLat?: boolean;
+      ExpectedTime: string;
     }[] = [];
 
     console.log(this.routeStopArr.value);
@@ -151,9 +186,9 @@ export class BusEditComponent implements OnInit {
     this.routeStopArr.value.forEach((item, index) => {
       listStudentHold[index] = [];
       if (item.StudentList) {
-        item.StudentList.map(((std) => {
+        item.StudentList.map((std) => {
           listStudentHold[index].push(std.StudentId);
-        }));
+        });
       }
 
       listRouteBus.push({
@@ -163,8 +198,6 @@ export class BusEditComponent implements OnInit {
         CoordinationLong: item.CoordinationLong,
         CoordinationLat: item.CoordinationLat,
       });
-
-
     });
 
     console.log(listRouteBus);
@@ -172,58 +205,96 @@ export class BusEditComponent implements OnInit {
     // save bus route
     this.routeBusService.addBus(listRouteBus).subscribe(() => {
       this.routeStopArr.clear();
-      this.busService.getBusDetail(this.busId).subscribe((res) => {
-        res.forEach((val) => {
-          if (val.Type === Number(this.type)) {
-            this.busDetail = val;
-          }
-        });
-
-
-        // save student on route
-        this.busDetail.RouteStopsList.forEach((item, i) => {
-          this.routeBusService.addStudentOnRoute({RouteStopId: item.RouteStopId, StudentIdList: listStudentHold[i]}).subscribe((stop) => {
-            // this.getBusDetail();
+      this.busService.getBusDetail(this.busId).subscribe(
+        (res) => {
+          res.forEach((val) => {
+            if (val.Type === Number(this.type)) {
+              this.busDetail = val;
+            }
           });
-        });
-      });
-      // this.getBusDetail();
 
+          // save student on route
+          const listApi = [];
+          this.busDetail.RouteStopsList.forEach((item, i) => {
+            listApi.push(
+              this.routeBusService.addStudentOnRoute({
+                RouteStopId: item.RouteStopId,
+                StudentIdList: listStudentHold[i],
+              })
+            );
+          });
+          forkJoin(listApi).subscribe(
+            (list: any) => {
+              console.log(list);
+              this.message.success('Chỉnh sửa lộ trình thành công!');
+              this.getBusDetail();
+            },
+            (err) => {
+              this.message.error('Hệ thống đang bận. Vui lòng thử lại sau.');
+            }
+          );
+        },
+        (err) => {
+          this.message.error('Hệ thống đang bận. Vui lòng thử lại sau.');
+        }
+      );
     });
-
-    setTimeout(() => {
-      this.getBusDetail();
-    }, 1000);
   }
 
   editStudent(item, index): void {
-    const dialogRef = this.dialog
-      .open(AddStudentComponent, {
-        data: {
-          listAllStudent: this.listStudent,
-          listExitStudent: item.value.StudentList
-        },
-        panelClass: 'modal-confirm'
-      });
-
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogRef = this.dialog.open(AddStudentComponent, {
+      data: {
+        listAllStudent: this.listStudent,
+        listExitStudent: item.value.StudentList,
+      },
+      panelClass: 'modal-confirm',
     });
+
+    dialogRef.afterClosed().subscribe((result) => {});
     const dialogSubmitSubscription =
-      dialogRef.componentInstance.submitClicked.subscribe(result => {
+      dialogRef.componentInstance.submitClicked.subscribe((result) => {
         console.log(result);
         item.get('StudentList').patchValue(result);
         dialogSubmitSubscription.unsubscribe();
       });
   }
 
-  addRoute(routeId, name, time, listStudent, CoordinationLong, CoordinationLat): void {
-    this.routeStopArr.push(this.newRouteStop(routeId, name, time, listStudent, CoordinationLong, CoordinationLat));
+  addRoute(
+    routeId,
+    name,
+    time,
+    listStudent,
+    CoordinationLong,
+    CoordinationLat
+  ): void {
+    this.routeStopArr.push(
+      this.newRouteStop(
+        routeId,
+        name,
+        time,
+        listStudent,
+        CoordinationLong,
+        CoordinationLat
+      )
+    );
   }
 
   deleteRoute(lessonIndex: number): void {
-    this.routeStopArr.removeAt(lessonIndex);
+    this.dialog
+      .open(ConfirmDeleteComponent, {
+        data: {
+          title: 'Xóa điểm',
+          des: 'Bạn có chắc chắn muốn xóa điểm này?',
+        },
+        panelClass: 'modal-confirm',
+      })
+      .afterClosed()
+      .subscribe((res) => {
+        if (res.success === true) {
+          this.routeStopArr.removeAt(lessonIndex);
+        }
+      });
   }
-
 
   carUp(item, index): void {
     if (index === 0) {
@@ -243,18 +314,15 @@ export class BusEditComponent implements OnInit {
     }
   }
 
-
   getListDriver(): void {
     this.busService.getListDriver('').subscribe((res) => {
       this.drivers = res;
     });
   }
 
-
   getListSupervisor(): void {
     this.busService.getListSupervisor('').subscribe((res) => {
       this.teachers = res;
     });
   }
-
 }

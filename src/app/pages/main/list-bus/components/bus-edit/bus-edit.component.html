@@ -12,16 +12,25 @@
       <h2 *ngIf="type == 2">Chiều trả</h2>
     </div>
     <form class="form-name-car" [formGroup]="BusForm">
-      <div class="item">
-        <label class="titlle">Tên xe</label>
-        <input
-          type="text"
-          name=""
-          placeholder="Tên xe"
-          formControlName="Name"
-        />
+      <div class="item" style="margin-bottom: 20px">
+        <div class="item-control" style="margin-bottom: 0px">
+          <label class="titlle">Tên xe</label>
+          <input
+            type="text"
+            name=""
+            placeholder="Tên xe"
+            formControlName="Name"
+          />
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+          <div *ngIf="name.errors?.['required']">Vui lòng nhập tên xe</div>
+          <div *ngIf="name.errors?.['maxlength']">
+            Vui lòng nhập tên xe không quá 30 ký tự.
+          </div>
+        </div>
       </div>
-      <div class="item">
+
+      <div class="item-control">
         <label class="titlle">Tài xế</label>
         <nz-select
           nzShowSearch
@@ -36,7 +45,7 @@
           ></nz-option>
         </nz-select>
       </div>
-      <div class="item">
+      <div class="item-control">
         <label class="titlle">Giám sát</label>
         <nz-select
           nzShowSearch
@@ -51,7 +60,7 @@
           ></nz-option>
         </nz-select>
       </div>
-      <div class="item">
+      <div class="item-control">
         <label class="titlle">Giờ xuất phát</label>
         <input class="start-time" type="time" formControlName="StartTime" />
       </div>
@@ -135,7 +144,10 @@
                             src="assets/images/Vector 10.svg"
                             alt=""
                             class="arrow"
-                            (click)="hiddenItems[i] = !hiddenItems[i]; isActive[i] = !isActive[i]"
+                            (click)="
+                              hiddenItems[i] = !hiddenItems[i];
+                              isActive[i] = !isActive[i]
+                            "
                           />
                         </div>
                         <ul class="list-member-profile" *ngIf="hiddenItems[i]">
@@ -185,12 +197,12 @@
       class="create-car"
       (click)="addRoute(this.busDetail.RouteId, '', '', null, '', '')"
     >
-      <img src="assets/images/Group 9135.svg" alt="" /> Thêm thẻ
+      <img src="assets/images/Group 9135.svg" alt="" /> Thêm điểm
     </button>
 
     <!-- Start button submit -->
     <div class="btn-submit">
-      <button type="reset">Hủy bỏ</button>
+      <button type="reset" (click)="back()">Hủy bỏ</button>
       <button type="submit" (click)="saveBusRoute()">Lưu</button>
     </div>
     <!-- End button submit -->

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {MemberModel} from '../../../../../models/member.model';
-import {MemberService} from '../../../../../services/member.service';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MemberModel } from '../../../../../models/member.model';
+import { MemberService } from '../../../../../services/member.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 export interface Privilege {
   Description?: string;
@@ -26,20 +27,23 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     private activeRouter: ActivatedRoute,
     private memberService: MemberService,
-  ) {
-  }
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.tableData = this.config.collums;
     this.classId = +this.activeRouter.snapshot.params.classId;
     this.getListStudentOfClass();
-    this.memberService.getAllClass().subscribe(res => {
-      this.classDetail = res.find(x => x.ClassId === this.classId);
+    this.memberService.getAllClass().subscribe((res) => {
+      this.classDetail = res.find((x) => x.ClassId === this.classId);
     });
+  }
+  back(): void {
+    this.location.back();
   }
 
   getListStudentOfClass(): void {
-    this.memberService.getListStudentClass(this.classId).subscribe(res => {
+    this.memberService.getListStudentClass(this.classId).subscribe((res) => {
       if (res.length > 0) {
         this.data = res;
       } else {
@@ -50,8 +54,8 @@ export class MemberDetailComponent implements OnInit {
             DepartBus: 'dsdfsd',
             DepartStop: 'sdfdsfdf',
             ReturnBus: 'scdfdsf',
-            ReturnStop: 'sdsdfds'
-          }
+            ReturnStop: 'sdsdfds',
+          },
         ];
       }
     });

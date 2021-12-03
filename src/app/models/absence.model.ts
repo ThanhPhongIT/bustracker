@@ -12,7 +12,7 @@ export class AbsenceModel {
       // },
       {
         id: 'StudentName',
-        name: 'Họ tên',
+        name: 'Họ và tên',
         width: 250,
         type: 'text',
       },
@@ -24,7 +24,7 @@ export class AbsenceModel {
       },
       {
         id: 'ClassName',
-        name: 'Tên lớp',
+        name: 'Lớp',
         width: 150,
         type: 'text',
       },

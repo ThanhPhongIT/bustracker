@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MemberService} from '../../../../../../services/member.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MemberService } from '../../../../../../services/member.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-member-home-class',
@@ -14,8 +15,8 @@ export class MemberHomeClassComponent implements OnInit {
     private activeRouter: ActivatedRoute,
     private router: Router,
     private memberService: MemberService,
-  ) {
-  }
+    private location: Location
+  ) {}
 
   gradeId;
   listGrade;
@@ -24,9 +25,12 @@ export class MemberHomeClassComponent implements OnInit {
     this.gradeId = +this.activeRouter.snapshot.params.gradeId;
     this.getListClass();
   }
+  back(): void {
+    this.location.back();
+  }
 
   getListClass(): void {
-    this.memberService.getClassOfGrade(this.gradeId).subscribe(res => {
+    this.memberService.getClassOfGrade(this.gradeId).subscribe((res) => {
       this.data = res;
     });
   }

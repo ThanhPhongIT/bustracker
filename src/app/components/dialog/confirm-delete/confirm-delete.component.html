@@ -1,12 +1,11 @@
 <div class="change-pw">
-  <div class="change-pw-title">
-    Xóa xe
-  </div>
-  <p style="text-align: center; font-size: 24px">Bạn có chắc chắn muốn xóa xe này? </p>
+  <div class="change-pw-title">{{data.title}}</div>
+  <p style="text-align: center; font-size: 24px">
+    {{data.des}}
+  </p>
 
   <div class="change-pw-btn">
     <button class="btn-cancel" (click)="close()">Hủy bỏ</button>
-    <button class="btn-save" (click)="confirm()">Lưu</button>
+    <button class="btn-save" (click)="confirm()">Đồng ý</button>
   </div>
-
 </div>

@@ -33,7 +33,9 @@ listBus: BusModel[] = [];
     this.dialog
       .open(ConfirmDeleteComponent, {
         data: {
-          busId: id
+          busId: id,
+          title: 'Xóa xe',
+          des: 'Bạn có chắc chắn muốn xóa xe này?'
         },
         panelClass: 'modal-confirm'
       })

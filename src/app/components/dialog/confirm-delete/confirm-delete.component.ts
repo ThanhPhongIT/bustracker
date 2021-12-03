@@ -23,10 +23,17 @@ export class ConfirmDeleteComponent implements OnInit {
 
 
   confirm(): void{
-    this.busService.deleteBus(this.data.busId).subscribe((res) => {
-      console.log(res);
-      this.dialogRef.close();
-    });
+    if (this.data.busId){
+      this.busService.deleteBus(this.data.busId).subscribe((res) => {
+        console.log(res);
+        this.dialogRef.close();
+      });
+    }
+    else{
+      this.dialogRef.close({
+        success: true
+      })
+    }
   }
 
   close(): void {
