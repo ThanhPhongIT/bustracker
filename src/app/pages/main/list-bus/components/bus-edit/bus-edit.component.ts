@@ -43,7 +43,7 @@ export class BusEditComponent implements OnInit {
     types: [],
     componentRestrictions: { country: 'VN' },
   };
-
+  billGatesPoint: any;
   constructor(
     private route: ActivatedRoute,
     private busService: BusService,
@@ -145,6 +145,15 @@ export class BusEditComponent implements OnInit {
       this.BusForm.get('DriverId').setValue(this.busDetail.DriverId);
       this.BusForm.get('Type').setValue(Number(this.type));
       this.BusForm.get('StartTime').setValue(this.busDetail.StartTime);
+      console.log(this.type);
+      console.log(this.busDetail);
+      if (this.type === 1){
+        this.billGatesPoint = this.busDetail.RouteStopsList.shift();
+      }else{
+        this.billGatesPoint = this.busDetail.RouteStopsList.pop();
+      }
+      console.log(this.busDetail, this.billGatesPoint);
+      
       this.busDetail.RouteStopsList.forEach((val) => {
         const time = new Date(val.ExpectedTime).toTimeString().slice(0, 5);
         console.log(time);
@@ -163,6 +172,8 @@ export class BusEditComponent implements OnInit {
 
   saveBusRoute(): void {
     // Save bus info
+    let time = this.BusForm.get('StartTime').value;
+    this.BusForm.get('StartTime').setValue(time + ':00');
     this.busService.editBus(this.BusForm.value, this.busId).subscribe(
       (res) => {
         this.message.success('Chỉnh sửa thông tin xe thành công');
