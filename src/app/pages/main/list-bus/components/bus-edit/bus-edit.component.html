@@ -1,251 +1,298 @@
 <div class="main-layout-header">
-  <div class="title">
-    <h2>{{ busDetail?.BusName }}</h2>
-  </div>
-  <app-header-info></app-header-info>
+    <div class="title">
+        <h2>{{ busDetail?.BusName }}</h2>
+    </div>
+    <app-header-info></app-header-info>
 </div>
-
 <div class="main-layout-content">
-  <div class="car">
-    <div class="title">
-      <h2 *ngIf="type == 1">Chiều đón</h2>
-      <h2 *ngIf="type == 2">Chiều trả</h2>
-    </div>
-    <form class="form-name-car" [formGroup]="BusForm">
-      <div class="item" style="margin-bottom: 20px">
-        <div class="item-control" style="margin-bottom: 0px">
-          <label class="titlle">Tên xe</label>
-          <input
-            type="text"
-            name=""
-            placeholder="Tên xe"
-            formControlName="Name"
-          />
+    <div class="car">
+        <div class="title">
+            <h2 *ngIf="type == '1'">Chiều đón</h2>
+            <h2 *ngIf="type == '2'">Chiều trả</h2>
         </div>
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
-          <div *ngIf="name.errors?.['required']">Vui lòng nhập tên xe</div>
-          <div *ngIf="name.errors?.['maxlength']">
-            Vui lòng nhập tên xe không quá 30 ký tự.
-          </div>
-        </div>
-      </div>
-
-      <div class="item-control">
-        <label class="titlle">Tài xế</label>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Tìm tài xế"
-          formControlName="DriverId"
+        <form
+            class="form-name-car"
+            [formGroup]="BusForm"
         >
-          <nz-option
-            *ngFor="let driver of drivers"
-            [nzLabel]="driver.LastName"
-            [nzValue]="driver.DriverId"
-          ></nz-option>
-        </nz-select>
-      </div>
-      <div class="item-control">
-        <label class="titlle">Giám sát</label>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Tìm giám sát"
-          formControlName="TeacherId"
-        >
-          <nz-option
-            *ngFor="let teacher of teachers"
-            [nzLabel]="teacher.LastName"
-            [nzValue]="teacher.TeacherId"
-          ></nz-option>
-        </nz-select>
-      </div>
-      <div class="item-control">
-        <label class="titlle">Giờ xuất phát</label>
-        <input type="time" name="time" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="start-time" formControlName="StartTime">
-        <!-- <input class="start-time" type="time" formControlName="StartTime" /> -->
-      </div>
-    </form>
-    <div class="title">
-      <h2>Lộ trình</h2>
-    </div>
-    <div class="form-route-car">
-      <ul class="list-form-route-car">
-        <li class="list-form-route-car_li" *ngIf="type === 2">
-          <span class="number-stt">1</span>
-          <div class="box">
-            <p>
-              <label class="titlle">Địa chỉ</label>
-              <input
-                type="text"
-                name=""
-                [value]="billGatesPoint?.StopName"
-              />
-            </p>
-            <p>
-              <label class="titlle">Đặc điểm</label>
-              <input
-                placeholder="Nhập đặc điểm"
-              />
-            </p>
-          </div>
-        </li>
-        <form [formGroup]="routeStopForm">
-          <ng-container formArrayName="routeStopArr">
-            <ng-container
-              *ngFor="let item of routeStopArr.controls; let i = index"
+            <div
+                class="item"
+                style="margin-bottom: 20px"
             >
-              <li class="list-form-route-car_li" [formGroupName]="i">
-                <span class="number-stt">{{ i + 1 }}</span>
-                <span class="delete-route-car" (click)="deleteRoute(i)"
-                  ><img src="assets/images/Group 45.svg" alt=""
-                /></span>
-                <span
-                  class="route-car-up"
-                  (click)="carUp(item, i)"
-                  *ngIf="i !== 0"
+                <div
+                    class="item-control"
+                    style="margin-bottom: 0px"
                 >
-                  <img src="assets/images/Arrow-Down.svg" alt=""
-                /></span>
-                <span
-                  class="route-car-down"
-                  (click)="carDown(item, i)"
-                  *ngIf="i !== routeStopArr.controls.length"
-                  ><img src="assets/images/Arrow-Down1.svg" alt=""
-                /></span>
-
-                <div class="box">
-                  <p>
-                    <label class="titlle">Địa chỉ</label>
+                    <label class="titlle">Tên xe</label>
                     <input
-                      type="text"
-                      formControlName="StopName"
-                      name=""
-                      placeholder="Nhập địa chỉ"
+                        type="text"
+                        name=""
+                        placeholder="Tên xe"
+                        formControlName="Name"
                     />
-                  </p>
-                  <p>
-                    <label class="titlle">Đặc điểm</label>
-                    <input
-                      ngx-google-places-autocomplete
-                      [options]="options"
-                      #placesRef="ngx-places"
-                      (onAddressChange)="handleAddressChange($event, item)"
-                      placeholder="Nhập đặc điểm"
-                    />
-                  </p>
-                  <p>
-                    <label class="titlle">Giờ tới</label>
-                    <input
-                      style="min-width: 150px"
-                      type="time"
-                      formControlName="ExpectedTime"
-                      name=""
-                    />
-                  </p>
-                  <div class="list-member-route-car">
-                    <label class="titlle">Học sinh</label>
-                    <div class="list-member">
-                      <div class="box-member" [class.active]="isActive[i]">
-                        <div
-                          class="toltal-member"
-                          *ngIf="item.value.StudentList === null"
-                        >
-                          <span>0 học sinh</span>
-                        </div>
-                        <div
-                          class="toltal-member"
-                          *ngIf="item.value.StudentList"
-                        >
-                          <span
-                            >{{ item.value.StudentList.length }} học sinh</span
-                          >
-                          <img
-                            src="assets/images/Vector 10.svg"
-                            alt=""
-                            class="arrow"
-                            (click)="
+                </div>
+                <div
+                    *ngIf="name.invalid && (name.dirty || name.touched)"
+                    class="alert"
+                >
+                    <div *ngIf="name.errors?.['required']">Vui lòng nhập tên xe</div>
+                    <div *ngIf="name.errors?.['maxlength']"> Vui lòng nhập tên xe không quá 30 ký tự. </div>
+                </div>
+            </div>
+            <div class="item-control">
+                <label class="titlle">Tài xế</label>
+                <nz-select
+                    nzShowSearch
+                    nzAllowClear
+                    nzPlaceHolder="Tìm tài xế"
+                    formControlName="DriverId"
+                >
+                    <nz-option
+                        *ngFor="let driver of drivers"
+                        [nzLabel]="driver.LastName"
+                        [nzValue]="driver.DriverId"
+                    ></nz-option>
+                </nz-select>
+            </div>
+            <div class="item-control">
+                <label class="titlle">Giám sát</label>
+                <nz-select
+                    nzShowSearch
+                    nzAllowClear
+                    nzPlaceHolder="Tìm giám sát"
+                    formControlName="TeacherId"
+                >
+                    <nz-option
+                        *ngFor="let teacher of teachers"
+                        [nzLabel]="teacher.LastName"
+                        [nzValue]="teacher.TeacherId"
+                    ></nz-option>
+                </nz-select>
+            </div>
+            <div class="item-control">
+                <label class="titlle">Giờ xuất phát</label>
+                <input
+                    type="time"
+                    name="time"
+                    placeholder="hrs:mins"
+                    pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"
+                    class="start-time"
+                    formControlName="StartTime"
+                >
+                <!-- <input class="start-time" type="time" formControlName="StartTime" /> -->
+            </div>
+        </form>
+        <div class="title">
+            <h2>Lộ trình</h2>
+        </div>
+        <div class="form-route-car">
+            <ul class="list-form-route-car">
+                <li
+                    class="list-form-route-car_li"
+                    *ngIf="type === '2'"
+                >
+                    <span class="number-stt">1</span>
+                    <div class="box">
+                        <p>
+                            <label class="titlle">Địa chỉ</label>
+                            <input
+                                type="text"
+                                name=""
+                                [value]="billGatesPoint?.StopName"
+                            />
+                        </p>
+                        <p>
+                            <label class="titlle">Đặc điểm</label>
+                            <input placeholder="Nhập đặc điểm" />
+                        </p>
+                    </div>
+                </li>
+                <form [formGroup]="routeStopForm">
+                    <ng-container formArrayName="routeStopArr">
+                        <ng-container *ngFor="let item of routeStopArr.controls; let i = index">
+                            <li
+                                class="list-form-route-car_li"
+                                [formGroupName]="i"
+                            >
+                                <span
+                                    class="number-stt"
+                                    *ngIf="type === '1'"
+                                >{{ i + 1 }}</span>
+                                <span
+                                    class="number-stt"
+                                    *ngIf="type === '2'"
+                                >{{ i + 2 }}</span>
+                                <span
+                                    class="delete-route-car"
+                                    (click)="deleteRoute(i)"
+                                ><img
+                                        src="assets/images/Group 45.svg"
+                                        alt=""
+                                    /></span>
+                                <span
+                                    class="route-car-up"
+                                    (click)="carUp(item, i)"
+                                    *ngIf="i !== 0"
+                                >
+                                    <img
+                                        src="assets/images/Arrow-Down.svg"
+                                        alt=""
+                                    /></span>
+                                <span
+                                    class="route-car-down"
+                                    (click)="carDown(item, i)"
+                                    *ngIf="i !== routeStopArr.controls.length-1"
+                                ><img
+                                        src="assets/images/Arrow-Down1.svg"
+                                        alt=""
+                                    /></span>
+                                <div class="box">
+                                    <p>
+                                        <label class="titlle">Địa chỉ</label>
+                                        <input
+                                            type="text"
+                                            formControlName="StopName"
+                                            name=""
+                                            placeholder="Nhập địa chỉ"
+                                        />
+                                    </p>
+                                    <p>
+                                        <label class="titlle">Đặc điểm</label>
+                                        <input
+                                            ngx-google-places-autocomplete
+                                            [options]="options"
+                                            #placesRef="ngx-places"
+                                            (onAddressChange)="handleAddressChange($event, item)"
+                                            placeholder="Nhập đặc điểm"
+                                        />
+                                    </p>
+                                    <p>
+                                        <label class="titlle">Giờ tới</label>
+                                        <input
+                                            style="min-width: 150px"
+                                            type="time"
+                                            formControlName="ExpectedTime"
+                                            name=""
+                                        />
+                                    </p>
+                                    <div class="list-member-route-car">
+                                        <label class="titlle">Học sinh</label>
+                                        <div class="list-member">
+                                            <div
+                                                class="box-member"
+                                                [class.active]="isActive[i]"
+                                            >
+                                                <div
+                                                    class="toltal-member"
+                                                    *ngIf="item.value.StudentList === null"
+                                                >
+                                                    <span>0 học sinh</span>
+                                                </div>
+                                                <div
+                                                    class="toltal-member"
+                                                    *ngIf="item.value.StudentList"
+                                                >
+                                                    <span>{{ item.value.StudentList.length }} học sinh</span>
+                                                    <img
+                                                        src="assets/images/Vector 10.svg"
+                                                        alt=""
+                                                        class="arrow"
+                                                        (click)="
                               hiddenItems[i] = !hiddenItems[i];
                               isActive[i] = !isActive[i]
                             "
-                          />
-                        </div>
-                        <ul class="list-member-profile" *ngIf="hiddenItems[i]">
-                          <li
-                            class="list-member-profile_li"
-                            *ngFor="let std of item.value.StudentList"
-                          >
-                            <div class="box-img">
-                              <img
-                                src="assets/images/Rectangle 76.svg"
-                                alt=""
-                              />
-                            </div>
-                            <div class="box-txt">
-                              <ul class="list-member-profile-txt">
-                                <li>
-                                  <label>Tên:</label
-                                  ><span>{{ std.StudentName }}</span>
-                                </li>
-                                <li>
-                                  <label>Lớp:</label
-                                  ><span>{{ std.ClassName }}</span>
-                                </li>
-                                <li>
-                                  <label>SĐT Phụ huynh:</label
-                                  ><span>{{ std.ParentPhone }}</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                      <button class="edit-pick" (click)="editStudent(item, i)">
-                        <img src="assets/images/Vector1.svg" alt="" />Sửa học
-                        sinh
-                      </button>
+                                                    />
+                                                </div>
+                                                <ul
+                                                    class="list-member-profile"
+                                                    *ngIf="hiddenItems[i]"
+                                                >
+                                                    <li
+                                                        class="list-member-profile_li"
+                                                        *ngFor="let std of item.value.StudentList"
+                                                    >
+                                                        <div class="box-img">
+                                                            <img
+                                                                src="assets/images/Rectangle 76.svg"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <div class="box-txt">
+                                                            <ul class="list-member-profile-txt">
+                                                                <li>
+                                                                    <label>Tên:</label><span>{{ std.StudentName
+                                                                        }}</span>
+                                                                </li>
+                                                                <li>
+                                                                    <label>Lớp:</label><span>{{ std.ClassName }}</span>
+                                                                </li>
+                                                                <li>
+                                                                    <label>SĐT Phụ huynh:</label><span>{{
+                                                                        std.ParentPhone }}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <button
+                                                class="edit-pick"
+                                                (click)="editStudent(item, i)"
+                                            >
+                                                <img
+                                                    src="assets/images/Vector1.svg"
+                                                    alt=""
+                                                />Sửa học sinh </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ng-container>
+                    </ng-container>
+                </form>
+                <li
+                    class="list-form-route-car_li"
+                    *ngIf="type === '1'"
+                >
+                    <span class="number-stt">{{routeStopArr.controls.length+1}}</span>
+                    <div class="box">
+                        <p>
+                            <label class="titlle">Địa chỉ</label>
+                            <input
+                                type="text"
+                                name=""
+                                [value]="billGatesPoint?.StopName"
+                            />
+                        </p>
+                        <p>
+                            <label class="titlle">Đặc điểm</label>
+                            <input
+                                placeholder="Nhập đặc điểm"
+                                disabled
+                            />
+                        </p>
                     </div>
-                  </div>
-                </div>
-              </li>
-            </ng-container>
-          </ng-container>
-        </form>
-        <li class="list-form-route-car_li" *ngIf="type === 1">
-          <span class="number-stt">1</span>
-          <div class="box">
-            <p>
-              <label class="titlle">Địa chỉ</label>
-              <input
-                type="text"
-                name=""
-                [value]="billGatesPoint?.StopName"
-              />
-            </p>
-            <p>
-              <label class="titlle">Đặc điểm</label>
-              <input
-                placeholder="Nhập đặc điểm"
-              />
-            </p>
-          </div>
-        </li>
-      </ul>
-
-
+                </li>
+            </ul>
+        </div>
+        <button
+            class="create-car"
+            (click)="addRoute(this.busDetail.RouteId, '', '', null, '', '')"
+        >
+            <img
+                src="assets/images/Group 9135.svg"
+                alt=""
+            /> Thêm điểm </button>
+        <!-- Start button submit -->
+        <div class="btn-submit">
+            <button
+                type="reset"
+                (click)="back()"
+            >Hủy bỏ</button>
+            <button
+                type="submit"
+                (click)="saveBusRoute()"
+            >Lưu</button>
+        </div>
+        <!-- End button submit -->
     </div>
-    <button
-      class="create-car"
-      (click)="addRoute(this.busDetail.RouteId, '', '', null, '', '')"
-    >
-      <img src="assets/images/Group 9135.svg" alt="" /> Thêm điểm
-    </button>
-
-    <!-- Start button submit -->
-    <div class="btn-submit">
-      <button type="reset" (click)="back()">Hủy bỏ</button>
-      <button type="submit" (click)="saveBusRoute()">Lưu</button>
-    </div>
-    <!-- End button submit -->
-  </div>
 </div>
